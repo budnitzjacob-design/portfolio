@@ -1,0 +1,620 @@
+/* ============================================
+   JACOB BUDNITZ — PORTFOLIO
+   Transposed from Webflow, made responsive
+   ============================================ */
+
+/* --- Font Faces --- */
+@font-face {
+  font-family: 'Bauhaus';
+  src: url('../fonts/BauhausRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bauhaus';
+  src: url('../fonts/BauhausBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bauhaus';
+  src: url('../fonts/BauhausItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bauhaus';
+  src: url('../fonts/BauhausBoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Conthrax';
+  src: url('../fonts/conthrax-sb.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrainsMono';
+  src: url('../fonts/JetBrainsMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GoodTimes';
+  src: url('../fonts/good-times-rg.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- Shared: Back nav link --- */
+.back-nav {
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  z-index: 100;
+  color: #ffd900;
+  font-family: 'Bauhaus', serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 4px;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.back-nav:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   INDEX PAGE
+   ============================================ */
+.index-body {
+  background-color: #000;
+  min-height: 100vh;
+}
+
+.index-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.index-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.index-name {
+  color: #ffd900;
+  font-family: 'Bauhaus', serif;
+  font-weight: 700;
+  font-size: 100px;
+  letter-spacing: 10px;
+  margin-bottom: 40px;
+  text-align: center;
+  line-height: 1.05;
+}
+
+.index-link {
+  color: #ffd900;
+  font-family: 'Bauhaus', serif;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 20px;
+  text-decoration: none;
+  margin: 2px 0;
+  transition: opacity 0.2s;
+  text-align: center;
+}
+.index-link:hover {
+  opacity: 0.7;
+}
+
+.index-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+.index-bg img {
+  width: 100%;
+  display: block;
+}
+
+/* Index responsive */
+@media (max-width: 1200px) {
+  .index-name { font-size: 72px; letter-spacing: 6px; }
+  .index-link { font-size: 32px; letter-spacing: 14px; }
+}
+@media (max-width: 768px) {
+  .index-name { font-size: 42px; letter-spacing: 4px; margin-bottom: 28px; }
+  .index-link { font-size: 22px; letter-spacing: 8px; }
+}
+@media (max-width: 480px) {
+  .index-name { font-size: 28px; letter-spacing: 3px; margin-bottom: 20px; }
+  .index-link { font-size: 16px; letter-spacing: 5px; }
+  .index-container { padding: 20px; }
+}
+
+
+/* ============================================
+   THERMOROID PAGE
+   ============================================ */
+.thermoroid-body {
+  background-color: #000;
+  color: #fff;
+}
+
+.thermo-hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+.thermo-hero-title {
+  font-family: 'Conthrax', sans-serif;
+  font-size: 125px;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease;
+}
+.thermo-hero-img {
+  max-width: 475px;
+  margin: 0 auto 40px;
+  animation: fadeIn 1.2s ease;
+}
+.thermo-hero-subtitle {
+  font-family: 'Conthrax', sans-serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+  animation: fadeIn 1.4s ease;
+}
+.thermo-hero-meta {
+  font-family: 'Conthrax', sans-serif;
+  font-size: 20px;
+  margin-bottom: 60px;
+  animation: fadeIn 1.6s ease;
+}
+
+.thermo-intro {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  align-items: start;
+}
+.thermo-intro-render {
+  max-width: 375px;
+  margin: 0 auto;
+}
+.thermo-intro-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: justify;
+}
+.thermo-intro-text a {
+  color: #008cff;
+}
+.thermo-intro-caption {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 14px;
+  margin-top: 20px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* Section headers */
+.thermo-section-header {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 100px;
+  line-height: 1;
+  text-align: center;
+  margin: 60px 0 40px;
+}
+.thermo-section-header.small {
+  font-size: 40px;
+  margin: 40px 0 20px;
+}
+
+/* Specifications (placeholder) */
+.thermo-specs {
+  text-align: center;
+  padding: 0 40px 40px;
+}
+
+/* Story section */
+.thermo-story {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px 60px;
+}
+.thermo-story-header {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.thermo-story-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: justify;
+}
+.thermo-story-text a {
+  color: #008cff;
+}
+
+/* Prototypes */
+.thermo-prototypes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  padding: 0 40px;
+}
+.thermo-prototypes img {
+  width: 100%;
+  object-fit: cover;
+}
+.thermo-proto-caption {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Study sections */
+.thermo-study {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.thermo-study-title {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 40px;
+  text-align: center;
+  margin: 40px 0 20px;
+}
+.thermo-study-title.large {
+  font-size: 100px;
+  margin: 60px 0 30px;
+}
+.thermo-study-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 40px;
+}
+
+/* Findings */
+.thermo-findings-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 40px;
+  text-align: center;
+  margin: 40px 0 20px;
+}
+.thermo-findings-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 40px;
+}
+
+/* Charts */
+.thermo-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 40px;
+}
+.thermo-charts img {
+  width: 100%;
+}
+
+/* Conclusions */
+.thermo-conclusions {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px 120px;
+}
+.thermo-conclusions-title {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 40px;
+  margin: 40px 0 20px;
+}
+.thermo-conclusions-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Thermoroid responsive */
+@media (max-width: 1200px) {
+  .thermo-hero-title { font-size: 80px; }
+  .thermo-section-header { font-size: 60px; }
+}
+@media (max-width: 768px) {
+  .thermo-hero-title { font-size: 48px; }
+  .thermo-hero { padding: 60px 16px 30px; }
+  .thermo-intro { grid-template-columns: 1fr; padding: 20px 16px 40px; }
+  .thermo-intro-render { max-width: 280px; }
+  .thermo-section-header { font-size: 40px; }
+  .thermo-study-title.large { font-size: 40px; }
+  .thermo-prototypes { grid-template-columns: 1fr; padding: 0 16px; }
+  .thermo-charts { grid-template-columns: 1fr; padding: 0 16px; }
+  .thermo-study, .thermo-story, .thermo-conclusions { padding-left: 16px; padding-right: 16px; }
+  .thermo-intro-text { font-size: 14px; }
+  .thermo-study-text, .thermo-findings-text, .thermo-conclusions-text, .thermo-story-text { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  .thermo-hero-title { font-size: 32px; }
+  .thermo-hero-subtitle { font-size: 14px; }
+  .thermo-hero-meta { font-size: 14px; }
+  .thermo-section-header { font-size: 28px; }
+  .thermo-section-header.small { font-size: 24px; }
+  .thermo-study-title { font-size: 24px; }
+  .thermo-findings-title { font-size: 24px; }
+}
+
+
+/* ============================================
+   RESEARCH / CV PAGE
+   ============================================ */
+.research-body {
+  background-color: #e2e4d2;
+  color: #000;
+  padding-bottom: 80px;
+}
+
+.research-section-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 40px;
+  text-align: center;
+  margin: 60px 0 30px;
+  font-weight: 700;
+}
+
+.research-grid {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.research-year {
+  font-family: 'Times New Roman', serif;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 2px;
+}
+.research-year a {
+  color: inherit;
+  text-decoration: none;
+}
+.research-entry {
+  font-family: 'Times New Roman', serif;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.research-entry em {
+  font-style: italic;
+}
+.research-entry strong {
+  font-weight: 700;
+}
+
+.back-nav.dark {
+  color: #000;
+}
+
+/* Research responsive */
+@media (max-width: 768px) {
+  .research-grid { grid-template-columns: 70px 1fr; padding: 0 16px; gap: 8px 16px; }
+  .research-entry { font-size: 16px; }
+  .research-year { font-size: 16px; }
+  .research-section-title { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .research-grid { grid-template-columns: 1fr; }
+  .research-year { text-align: left; font-weight: 700; margin-top: 16px; }
+  .research-section-title { font-size: 24px; }
+}
+
+
+/* ============================================
+   PATENTS PAGE
+   ============================================ */
+.patents-body {
+  background-color: #010101;
+  background-image: url('../images/IMG_8075.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #fff;
+  text-shadow: 0 1px 1px #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 40px;
+}
+
+.patent-block {
+  max-width: 700px;
+  margin: 0 0 60px;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 700;
+  background-color: #000;
+  padding: 8px 12px;
+  text-shadow: 0 1px 20px #000;
+}
+.patent-block.right {
+  align-self: flex-start;
+  margin-left: 20px;
+  text-align: right;
+}
+.patent-block.left {
+  align-self: flex-end;
+  text-align: left;
+  margin-right: 20px;
+}
+.patent-block.center {
+  align-self: center;
+  text-align: center;
+}
+
+.back-nav.patents {
+  color: #ffd900;
+}
+
+/* Patents responsive */
+@media (max-width: 768px) {
+  .patents-body { padding: 60px 16px; }
+  .patent-block { font-size: 20px; line-height: 24px; }
+  .patent-block.center { font-size: 20px; line-height: 24px; }
+}
+@media (max-width: 480px) {
+  .patent-block { font-size: 16px; line-height: 20px; }
+  .patent-block.center { font-size: 16px; line-height: 20px; }
+  .patent-block.right, .patent-block.left { text-align: left; align-self: flex-start; }
+}
+
+
+/* ============================================
+   ARTWORKS PAGE
+   ============================================ */
+.artworks-body {
+  background: linear-gradient(180deg, #ff8080, #5cb0ff);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.artworks-title {
+  font-family: 'Conthrax', sans-serif;
+  font-size: 100px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.artworks-subtitle {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .artworks-title { font-size: 48px; }
+}
+@media (max-width: 480px) {
+  .artworks-title { font-size: 32px; }
+}
+
+
+/* ============================================
+   BIOGRAPHY PAGE
+   ============================================ */
+.biography-body {
+  background-image: url('../images/bliss.webp');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 40px;
+}
+
+.biography-card {
+  color: #fff;
+  text-align: center;
+  font-family: 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.8;
+  text-shadow: 2px 11px 16px #000;
+  max-width: 700px;
+}
+.biography-card .contact-label {
+  margin-top: 80px;
+  font-size: 18px;
+}
+.biography-card a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.back-nav.bio {
+  color: #fff;
+  text-shadow: 0 1px 4px #000;
+}
+
+@media (max-width: 768px) {
+  .biography-body { padding: 60px 16px; }
+  .biography-card { font-size: 16px; }
+}
+
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+sup {
+  font-size: 0.65em;
+  vertical-align: super;
+}

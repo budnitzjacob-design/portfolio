@@ -160,33 +160,18 @@ a {
 
 .index-bg {
   position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 65%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1;
   pointer-events: none;
 }
 .index-bg img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
-}
-
-@media (max-width: 768px) {
-  .index-bg {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    transform: none;
-  }
-  .index-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
 }
 
 /* Index responsive — width breakpoints */

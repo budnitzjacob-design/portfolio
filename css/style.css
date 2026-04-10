@@ -635,11 +635,15 @@ a {
 
 /* ============================================
    BIOCOOLER PAGE
+   — Matches biocooler.carrd.co layout exactly:
+     40rem centered column, JetBrains Mono,
+     #F2F2EB background, 18pt base font
    ============================================ */
 .biocooler-body {
   background-color: #F2F2EB;
   color: #000;
-  padding-bottom: 100px;
+  font-size: 18pt;
+  line-height: 1;
 }
 
 .biocooler-back {
@@ -649,105 +653,109 @@ a {
   opacity: 0.5;
 }
 
-.bio-hero {
-  text-align: center;
-  padding: 80px 40px 40px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.bio-hero-title {
-  font-family: 'Conthrax', sans-serif;
-  font-size: 100px;
-  line-height: 1;
-  margin-bottom: 20px;
-}
-
-.bio-hero-subtitle {
-  font-family: 'JetBrainsMono', monospace;
-  font-size: 14px;
-  line-height: 1.6;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-}
-
-.bio-hero-contact {
-  font-family: 'JetBrainsMono', monospace;
-  font-size: 12px;
-  opacity: 0.6;
-}
-.bio-hero-contact a {
-  text-decoration: underline;
-}
-
-.bio-renders {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 1100px;
-  margin: 0 auto 20px;
-  padding: 0 40px;
-}
-
-.bio-render-item {
+/* Outer wrapper — centers the column */
+.bc-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 1.5rem 3rem;
+  min-height: 100vh;
 }
 
-.bio-render-item img {
-  width: 100%;
-  object-fit: contain;
+/* Inner column — 40rem wide like carrd */
+.bc-inner {
+  width: 40rem;
+  max-width: 100%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.bio-render-caption {
+/* Title: 2em bold centered */
+.bc-title {
   font-family: 'JetBrainsMono', monospace;
-  font-size: 12px;
-  margin-top: 10px;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.5;
   text-align: center;
-  opacity: 0.6;
+  color: #000;
 }
 
-.bio-section-title {
+/* Subtitle: 1.25em normal centered */
+.bc-subtitle {
   font-family: 'JetBrainsMono', monospace;
-  font-size: 13px;
+  font-size: 1.25em;
   font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  border-top: 1px solid #000;
-  max-width: 760px;
-  margin: 50px auto 16px;
-  padding: 12px 0 0;
+  line-height: 1.5;
+  text-align: center;
+  color: #000;
+}
+.bc-subtitle a {
+  color: #000;
+  text-decoration: underline;
 }
 
-.bio-text {
+/* Full-width image */
+.bc-img-wrap {
+  width: 100%;
+  line-height: 0;
+}
+.bc-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Caption: 0.75em centered */
+.bc-caption {
   font-family: 'JetBrainsMono', monospace;
-  font-size: 13px;
-  line-height: 22px;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 40px;
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  color: #000;
 }
 
-.bio-text-last {
-  padding-bottom: 40px;
+/* Section heading (MANUSCRIPT): 1.375em semibold centered */
+.bc-section-heading {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 1.375em;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  color: #000;
+  margin-top: 0.75rem;
+}
+
+/* Sub-section heading (e.g. CHEMICAL BASED COOLING): 1em semibold centered */
+.bc-subheading {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  color: #000;
+}
+
+/* Body text: 0.75em justified */
+.bc-body {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: justify;
+  color: #000;
 }
 
 /* BioCooler responsive */
-@media (max-width: 900px) {
-  .bio-renders { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 768px) {
-  .bio-hero-title { font-size: 60px; }
-  .bio-hero { padding: 60px 20px 30px; }
-  .bio-section-title { margin-left: 20px; margin-right: 20px; }
-  .bio-text { padding: 0 20px; font-size: 13px; }
+@media (max-width: 720px) {
+  .biocooler-body { font-size: 14pt; }
+  .bc-inner { padding: 2rem 1.5rem; }
 }
 @media (max-width: 480px) {
-  .bio-hero-title { font-size: 36px; }
-  .bio-renders { grid-template-columns: 1fr; padding: 0 20px; }
-  .bio-section-title { font-size: 11px; }
+  .biocooler-body { font-size: 12pt; }
+  .bc-inner { padding: 1.5rem 1rem; }
 }
 
 

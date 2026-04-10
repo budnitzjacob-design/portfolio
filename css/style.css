@@ -189,7 +189,7 @@ a {
   }
 }
 
-/* Index responsive */
+/* Index responsive — width breakpoints */
 @media (max-width: 1200px) {
   .index-name { font-size: 72px; letter-spacing: 6px; }
   .index-link { font-size: 32px; letter-spacing: 14px; }
@@ -202,6 +202,22 @@ a {
   .index-name { font-size: 28px; letter-spacing: 3px; margin-bottom: 20px; }
   .index-link { font-size: 16px; letter-spacing: 5px; }
   .index-container { padding: 20px; }
+}
+
+/* Index responsive — height breakpoints (keeps nav + balls both visible) */
+@media (max-height: 820px) {
+  .index-name { font-size: 72px; letter-spacing: 6px; margin-bottom: 24px; }
+  .index-link { font-size: 32px; letter-spacing: 14px; }
+  .index-nav  { gap: 2px; }
+}
+@media (max-height: 680px) {
+  .index-name { font-size: 52px; letter-spacing: 4px; margin-bottom: 16px; }
+  .index-link { font-size: 24px; letter-spacing: 10px; }
+  .index-nav  { gap: 0; }
+}
+@media (max-height: 540px) {
+  .index-name { font-size: 36px; letter-spacing: 3px; margin-bottom: 10px; }
+  .index-link { font-size: 18px; letter-spacing: 6px; }
 }
 
 

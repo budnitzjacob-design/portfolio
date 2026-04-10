@@ -634,127 +634,153 @@ a {
 
 
 /* ============================================
-   BIOCOOLER PAGE
-   — Matches biocooler.carrd.co layout exactly:
-     40rem centered column, JetBrains Mono,
-     #F2F2EB background, 18pt base font
+   BIOCOOLER PAGE — exact match to biocooler.carrd.co
    ============================================ */
+
+/* Base font matches carrd's html { font-size: 18pt } */
 .biocooler-body {
   background-color: #F2F2EB;
-  color: #000;
+  color: #000000;
   font-size: 18pt;
   line-height: 1;
+  overflow-x: hidden;
+  word-wrap: break-word;
 }
 
-.biocooler-back {
-  color: #000;
+/* ← HOME back nav: black text on beige */
+.bc-back-nav {
+  color: #000000 !important;
 }
-.biocooler-back:hover {
-  opacity: 0.5;
+.bc-back-nav:hover {
+  opacity: 0.6;
 }
 
-/* Outer wrapper — centers the column */
+/* Outer wrapper: carrd's .site-wrapper */
 .bc-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 1.5rem 3rem;
+  justify-content: flex-start;
   min-height: 100vh;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  overflow: hidden;
 }
 
-/* Inner column — 40rem wide like carrd */
+/* Inner column: carrd's .site-main > .inner
+   --width: 40rem, --padding-horizontal: 3rem, --padding-vertical: 3rem */
 .bc-inner {
   width: 40rem;
   max-width: 100%;
   padding: 3rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
 }
 
-/* Title: 2em bold centered */
+/* All direct children: --spacing: 0.75rem top and bottom margin */
+.bc-inner > * {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.bc-inner > *:first-child { margin-top: 0; }
+.bc-inner > *:last-child  { margin-bottom: 0; }
+
+/* Title — instance-1: 2em, bold, centered */
 .bc-title {
   font-family: 'JetBrainsMono', monospace;
   font-size: 2em;
   font-weight: 700;
   line-height: 1.5;
   text-align: center;
-  color: #000;
+  color: #000000;
 }
 
-/* Subtitle: 1.25em normal centered */
-.bc-subtitle {
+/* ABSTRACT heading — instance-2: 1.25em, centered */
+.bc-abstract-heading {
   font-family: 'JetBrainsMono', monospace;
   font-size: 1.25em;
   font-weight: 400;
   line-height: 1.5;
   text-align: center;
-  color: #000;
+  color: #000000;
 }
-.bc-subtitle a {
-  color: #000;
-  text-decoration: underline;
-}
-
-/* Full-width image */
-.bc-img-wrap {
-  width: 100%;
-  line-height: 0;
-}
-.bc-img-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
+.bc-abstract-heading strong {
+  font-weight: 700;
+  color: inherit;
 }
 
-/* Caption: 0.75em centered */
-.bc-caption {
-  font-family: 'JetBrainsMono', monospace;
-  font-size: 0.75em;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: center;
-  color: #000;
-}
-
-/* Section heading (MANUSCRIPT): 1.375em semibold centered */
-.bc-section-heading {
-  font-family: 'JetBrainsMono', monospace;
-  font-size: 1.375em;
-  font-weight: 600;
-  line-height: 1.5;
-  text-align: center;
-  color: #000;
-  margin-top: 0.75rem;
-}
-
-/* Sub-section heading (e.g. CHEMICAL BASED COOLING): 1em semibold centered */
-.bc-subheading {
-  font-family: 'JetBrainsMono', monospace;
-  font-size: 1em;
-  font-weight: 600;
-  line-height: 1.5;
-  text-align: center;
-  color: #000;
-}
-
-/* Body text: 0.75em justified */
+/* Body text — instance-3/8/11/10/9/15/17: 0.75em, justified */
 .bc-body {
   font-family: 'JetBrainsMono', monospace;
   font-size: 0.75em;
   font-weight: 400;
   line-height: 1.5;
   text-align: justify;
-  color: #000;
+  color: #000000;
+}
+.bc-body a {
+  color: #000000;
+  text-decoration: underline;
 }
 
-/* BioCooler responsive */
-@media (max-width: 720px) {
+/* Multi-paragraph blocks: span.bc-p = carrd's span.p (display block) */
+.bc-body .bc-p {
+  display: block;
+}
+.bc-body .bc-p + .bc-p {
+  margin-top: 1rem;
+}
+
+/* Images — full column width */
+.bc-image {
+  display: block;
+  line-height: 0;
+  width: 100%;
+}
+.bc-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: top;
+}
+
+/* Captions — instance-4/20/18/5/19/21: 0.75em, centered */
+.bc-caption {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  color: #000000;
+}
+
+/* MANUSCRIPT heading — instance-6: 1.375em, semibold, centered */
+.bc-manuscript-heading {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 1.375em;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  color: #000000;
+}
+
+/* Sub-section headings — instance-7/12/13/14/16: 1em, semibold, centered */
+.bc-subheading {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  color: #000000;
+}
+
+/* Responsive */
+@media (max-width: 736px) {
   .biocooler-body { font-size: 14pt; }
   .bc-inner { padding: 2rem 1.5rem; }
+  .bc-wrapper { padding: 0 1rem 1rem; }
 }
 @media (max-width: 480px) {
-  .biocooler-body { font-size: 12pt; }
+  .biocooler-body { font-size: 11pt; }
   .bc-inner { padding: 1.5rem 1rem; }
 }
 

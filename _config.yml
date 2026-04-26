@@ -1,0 +1,5 @@
+exclude:
+  - admin.html
+  - server.py
+  - deploy.command
+  - README.md

@@ -3,6 +3,13 @@
    Transposed from Webflow, made responsive
    ============================================ */
 
+/* Custom inverting cursor — see cursor.js */
+@media (hover: hover) and (pointer: fine) {
+  html.cursor-hidden,
+  html.cursor-hidden *,
+  html.cursor-hidden body { cursor: none !important; }
+}
+
 /* --- Font Faces --- */
 @font-face {
   font-family: 'Bauhaus';

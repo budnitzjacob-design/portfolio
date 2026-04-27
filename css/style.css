@@ -3,12 +3,17 @@
    Transposed from Webflow, made responsive
    ============================================ */
 
-/* Custom inverting cursor — see cursor.js */
-@media (hover: hover) and (pointer: fine) {
-  html.cursor-hidden,
-  html.cursor-hidden *,
-  html.cursor-hidden body { cursor: none !important; }
-}
+/* Custom inverting cursor — see cursor.js.
+   The .cursor-hidden class is only added by the script, which itself
+   only runs on (hover: hover) and (pointer: fine), so we don't need
+   to gate this rule on a media query — the script is the gate.
+   On touch / mobile the script never adds the class, no cursor is
+   suppressed, and the native (no-cursor) behavior applies. */
+html.cursor-hidden,
+html.cursor-hidden body,
+html.cursor-hidden *,
+html.cursor-hidden *::before,
+html.cursor-hidden *::after { cursor: none !important; }
 
 /* --- Font Faces --- */
 @font-face {

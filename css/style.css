@@ -827,12 +827,11 @@ a {
        max  (□)   : yellow #FFD23F → #C99300
        min  (_)   : green  #4CD964 → #1E8A2C
    TYPOGRAPHY
-     family: 'Lower Pixel', 'Pixelify Sans', 'VT323',
-             'Press Start 2P', 'Pixeboy', monospace
-     title : 11px / 700
-     body  : 18px / 1.4 / 400 (pixel fonts read small — bumped up)
-     sub   : 14px / 1.4 / italic
-     button: 14px / 400  / text-align:center
+     family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif
+     title : 11px / 700 / 1px text-shadow rgba(0,0,0,0.5)
+     body  : 11px / 1.45 / 400
+     sub   : 10px / 1.4 / italic
+     button: 11px / 400  / text-align:center
    GEOMETRY
      window 320px wide, top corners rounded 8px, bottom flat.
      title bar: 26px tall, padding 0 4px 0 8px.
@@ -855,9 +854,8 @@ a {
   display: none;
   align-items: center;
   justify-content: center;
-  font-family: 'Lower Pixel', 'Pixelify Sans', 'VT323', 'Press Start 2P', 'Pixeboy', monospace;
+  font-family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
-  image-rendering: pixelated;
 }
 .xp-overlay.is-open {
   display: flex;
@@ -900,11 +898,11 @@ a {
     );
   border-bottom: 1px solid #002B7F;
   color: #FFFFFF;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.55);
-  letter-spacing: 0.4px;
-  font-family: 'Lower Pixel', 'Pixelify Sans', 'VT323', 'Press Start 2P', 'Pixeboy', monospace;
+  letter-spacing: 0.2px;
+  font-family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
 }
 .xp-title {
   flex: 1 1 auto;
@@ -926,7 +924,7 @@ a {
     inset 0 1px 1px rgba(255, 255, 255, 0.7),
     inset 0 -1px 2px rgba(0, 0, 0, 0.25);
   color: rgba(0, 0, 0, 0.65);
-  font: 700 11px/1 'Lower Pixel', 'Pixelify Sans', 'VT323', monospace;
+  font: 700 10px/1 "Marlett", Tahoma, "Trebuchet MS", sans-serif;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -965,7 +963,7 @@ a {
   display: flex;
   gap: 14px;
   align-items: flex-start;
-  font-family: 'Lower Pixel', 'Pixelify Sans', 'VT323', 'Press Start 2P', 'Pixeboy', monospace;
+  font-family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
 }
 .xp-icon {
   flex: 0 0 auto;
@@ -990,15 +988,15 @@ a {
   flex: 1 1 auto;
 }
 .xp-message-main {
-  font-size: 18px;
-  line-height: 1.35;
+  font-size: 11px;
+  line-height: 1.45;
   font-weight: 400;
   margin: 0 0 12px;
   display: inline-block;
   transform-origin: left center;
 }
 .xp-message-sub {
-  font-size: 14px;
+  font-size: 10px;
   line-height: 1.4;
   color: #3a3a3a;
   margin: 0;
@@ -1022,7 +1020,7 @@ a {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
     inset 0 -1px 0 rgba(0, 0, 0, 0.06);
-  font: 14px/1 'Lower Pixel', 'Pixelify Sans', 'VT323', 'Press Start 2P', 'Pixeboy', monospace;
+  font: 11px/1 Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
   color: #000;
   cursor: pointer;
   text-align: center;

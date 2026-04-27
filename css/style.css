@@ -801,41 +801,46 @@ a {
 /* ============================================
    XP DIALOG — landing easter egg
    --------------------------------------------
-   Style guide (Windows XP "Silver" theme — greyscale Luna).
-   Goal: read as authentic XP without introducing any new
-   hue to a yellow-on-black landing page. No reds, no blues.
+   Style guide (Windows XP "Luna Blue" — cream chassis,
+   traffic-light caption buttons, pixel-font body).
 
    COLOR TOKENS
-     --xp-titlebar-top : #BDBAAD
-     --xp-titlebar-mid : #9C998D
-     --xp-titlebar-bot : #82807D
-     --xp-titlebar-text: #FFFFFF
-     --xp-window-bg    : #ECE9D8   (canonical XP "Bone")
-     --xp-window-border: #4D4B43
-     --xp-window-hilite: #E1DFD6
-     --xp-button-top   : #FDFDFD
-     --xp-button-bot   : #C9C7BA
-     --xp-button-border: #6E6A5F
-     --xp-button-focus : #2E2E2E   (dotted, default button only)
-     --xp-text         : #000000
-     --xp-shadow       : 0 6px 24px rgba(0,0,0,0.45)
+     Title bar (Luna gradient, top → bottom):
+       #0058E0 0% / #3F8CF3 8% / #245EDC 40% /
+       #1F58D5 88% / #0A246A 100%
+     --xp-titlebar-text : #FFFFFF
+     --xp-window-bg     : #FBF6E4   (cream)
+     --xp-window-border : #002B7F
+     --xp-window-hilite : #FFFCEF
+     --xp-button-top    : #FFFFFF
+     --xp-button-bot    : #E4DEC4
+     --xp-button-border : #6E6A5F
+     --xp-text          : #000000
+     --xp-shadow        : 0 8px 28px rgba(0,0,0,0.45)
+     Caption buttons (mac-style traffic lights, XP-shaped):
+       close (X)  : red    #E04545 → #B71B1B
+       max  (□)   : yellow #FFD23F → #C99300
+       min  (_)   : green  #4CD964 → #1E8A2C
    TYPOGRAPHY
-     family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif
-     title : 11px / 700 / 1px text-shadow rgba(0,0,0,0.4)
-     body  : 11px / 1.45 / 400
-     button: 11px / 400  / text-align:center
+     family: 'Lower Pixel', 'Pixelify Sans', 'VT323',
+             'Press Start 2P', 'Pixeboy', monospace
+     title : 11px / 700
+     body  : 18px / 1.4 / 400 (pixel fonts read small — bumped up)
+     sub   : 14px / 1.4 / italic
+     button: 14px / 400  / text-align:center
    GEOMETRY
-     window 320px wide, top corners rounded 6px (XP signature),
-     bottom flat. 1px outer border + 1px inner highlight.
-     title bar: 22px tall, padding 0 4px 0 8px.
-     caption buttons: 21x18, gap 2px.
+     window 320px wide, top corners rounded 8px, bottom flat.
+     title bar: 26px tall, padding 0 4px 0 8px.
+     caption buttons: 18x18 circles, gap 4px.
      body padding: 14px 16px.
-     button row: padding 0 12px 12px, gap 6px, justify-content flex-end.
-     button: min-width 90px, padding 4px 12px, border-radius 3px.
+     button row: padding 0 12px 14px, gap 6px, flex-end.
+     button: min-width 100px, padding 4px 12px, border-radius 3px.
    ANIMATION
      wiggle  — rotate(-4deg)→rotate(4deg), 0.12s infinite alternate
      marquee — translateX(100%)→translateX(-100%), 6s linear infinite
-     balloon — scale(1)→scale(3)→scale(1), 4s ease-in-out, 1 cycle
+     balloon — scale(1)→scale(10)→scale(1), 4s ease-in-out, 1 cycle
+     flash   — opacity 1→0.15→1, 0.18s infinite alternate
+     bold    — font-weight: 900 applied while cooking
    ============================================ */
 .xp-overlay {
   position: fixed;
@@ -845,8 +850,9 @@ a {
   display: none;
   align-items: center;
   justify-content: center;
-  font-family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
+  font-family: 'Lower Pixel', 'Pixelify Sans', 'VT323', 'Press Start 2P', 'Pixeboy', monospace;
   -webkit-font-smoothing: antialiased;
+  image-rendering: pixelated;
 }
 .xp-overlay.is-open {
   display: flex;
@@ -860,37 +866,40 @@ a {
 .xp-window {
   width: 320px;
   max-width: calc(100vw - 24px);
-  background: #ECE9D8;
+  background: #FBF6E4;
   color: #000;
-  border: 1px solid #4D4B43;
-  border-radius: 6px 6px 0 0;
+  border: 1px solid #002B7F;
+  border-radius: 8px 8px 0 0;
   box-shadow:
-    inset 0 0 0 1px #E1DFD6,
-    0 6px 24px rgba(0, 0, 0, 0.45);
+    inset 0 0 0 1px #FFFCEF,
+    0 8px 28px rgba(0, 0, 0, 0.45);
   user-select: none;
   -webkit-user-select: none;
+  font-family: inherit;
 }
 
 .xp-titlebar {
-  height: 22px;
+  height: 26px;
   display: flex;
   align-items: center;
-  padding: 0 3px 0 8px;
-  border-radius: 5px 5px 0 0;
+  padding: 0 4px 0 8px;
+  border-radius: 7px 7px 0 0;
   background:
     linear-gradient(
       to bottom,
-      #BDBAAD 0%,
-      #A8A597 45%,
-      #9C998D 55%,
-      #82807D 100%
+      #0058E0 0%,
+      #3F8CF3 8%,
+      #245EDC 40%,
+      #1F58D5 88%,
+      #0A246A 100%
     );
-  border-bottom: 1px solid #4D4B43;
+  border-bottom: 1px solid #002B7F;
   color: #FFFFFF;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.45);
-  letter-spacing: 0.2px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.55);
+  letter-spacing: 0.4px;
+  font-family: 'Lower Pixel', 'Pixelify Sans', 'VT323', 'Press Start 2P', 'Pixeboy', monospace;
 }
 .xp-title {
   flex: 1 1 auto;
@@ -900,36 +909,58 @@ a {
 }
 .xp-caption-buttons {
   display: flex;
-  gap: 2px;
+  gap: 4px;
+  align-items: center;
 }
 .xp-cap {
-  width: 21px;
+  width: 18px;
   height: 18px;
-  border: 1px solid #4D4B43;
-  border-radius: 2px;
-  background:
-    linear-gradient(to bottom, #FDFDFD 0%, #DCD9CA 60%, #B8B5A6 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  color: #000;
-  font: 700 10px/1 "Marlett", Tahoma, sans-serif;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.55);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.65);
+  font: 700 11px/1 'Lower Pixel', 'Pixelify Sans', 'VT323', monospace;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: default;
   padding: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
-.xp-cap.xp-cap--close { font-weight: 700; }
-.xp-cap.xp-cap--close:hover { background: linear-gradient(to bottom, #FFF 0%, #E5E2D3 60%, #C2BFAF 100%); }
-.xp-cap:active { box-shadow: inset 0 1px 2px rgba(0,0,0,0.25); }
+/* Minimize — green */
+.xp-cap--min {
+  background: radial-gradient(circle at 30% 30%, #B6F2C2 0%, #4CD964 45%, #1E8A2C 100%);
+}
+/* Maximize — yellow */
+.xp-cap--max {
+  background: radial-gradient(circle at 30% 30%, #FFE99A 0%, #FFD23F 45%, #C99300 100%);
+}
+/* Close — red */
+.xp-cap--close {
+  background: radial-gradient(circle at 30% 30%, #FFB0A8 0%, #E04545 45%, #B71B1B 100%);
+  color: #FFFFFF;
+  cursor: pointer;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+.xp-cap--close:hover {
+  filter: brightness(1.08);
+}
+.xp-cap:active {
+  filter: brightness(0.92);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.25);
+}
 
 .xp-body {
   padding: 16px 16px 4px;
-  font-size: 11px;
-  line-height: 1.45;
   color: #000;
   display: flex;
   gap: 14px;
   align-items: flex-start;
+  font-family: 'Lower Pixel', 'Pixelify Sans', 'VT323', 'Press Start 2P', 'Pixeboy', monospace;
 }
 .xp-icon {
   flex: 0 0 auto;
@@ -937,9 +968,9 @@ a {
   height: 32px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 35% 30%, #FFFFFF 0%, #DCD9CA 55%, #8A877B 100%);
-  border: 1px solid #4D4B43;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+    radial-gradient(circle at 35% 30%, #6FB2FF 0%, #2A6BD6 55%, #0A2F8A 100%);
+  border: 1px solid #002B7F;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -947,19 +978,23 @@ a {
   font-style: italic;
   font-weight: 700;
   font-size: 22px;
-  color: #1a1a1a;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.45);
 }
 .xp-message {
   flex: 1 1 auto;
 }
 .xp-message-main {
-  font-size: 11px;
+  font-size: 18px;
+  line-height: 1.35;
   font-weight: 400;
-  margin: 2px 0 12px;
+  margin: 0 0 12px;
+  display: inline-block;
+  transform-origin: left center;
 }
 .xp-message-sub {
-  font-size: 10px;
+  font-size: 14px;
+  line-height: 1.4;
   color: #3a3a3a;
   margin: 0;
   font-style: italic;
@@ -973,16 +1008,16 @@ a {
   flex-wrap: wrap;
 }
 .xp-btn {
-  min-width: 92px;
-  height: 23px;
+  min-width: 100px;
+  height: 28px;
   padding: 0 12px;
   border: 1px solid #6E6A5F;
   border-radius: 3px;
-  background: linear-gradient(to bottom, #FDFDFD 0%, #ECE9D8 50%, #C9C7BA 100%);
+  background: linear-gradient(to bottom, #FFFFFF 0%, #FBF6E4 50%, #E4DEC4 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
     inset 0 -1px 0 rgba(0, 0, 0, 0.06);
-  font: 11px/1 Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
+  font: 14px/1 'Lower Pixel', 'Pixelify Sans', 'VT323', 'Press Start 2P', 'Pixeboy', monospace;
   color: #000;
   cursor: pointer;
   text-align: center;
@@ -993,16 +1028,16 @@ a {
   position: relative;
 }
 .xp-btn:hover {
-  border-color: #2E2E2E;
-  background: linear-gradient(to bottom, #FFFFFF 0%, #F1EEDD 50%, #D4D2C5 100%);
+  border-color: #002B7F;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #FFFCEF 50%, #ECE5C4 100%);
 }
 .xp-btn:active {
-  background: linear-gradient(to bottom, #C9C7BA 0%, #ECE9D8 50%, #FDFDFD 100%);
+  background: linear-gradient(to bottom, #E4DEC4 0%, #FBF6E4 50%, #FFFFFF 100%);
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
 }
 .xp-btn--default {
-  border-color: #2E2E2E;
-  outline: 1px dotted #2E2E2E;
+  border-color: #002B7F;
+  outline: 1px dotted #002B7F;
   outline-offset: -4px;
 }
 
@@ -1015,8 +1050,10 @@ a {
 
 /* easter-egg state, applied to .xp-window after 10s further idle */
 .xp-window.is-cooking .xp-message-main {
-  display: inline-block;
-  animation: xp-balloon 4000ms ease-in-out 1;
+  font-weight: 900;
+  animation:
+    xp-balloon 4000ms ease-in-out 1,
+    xp-flash    180ms steps(2, end) infinite alternate;
   transform-origin: left center;
 }
 .xp-window.is-cooking .xp-btn--default .xp-btn-text {
@@ -1035,9 +1072,13 @@ a {
   to   { transform: translateX(-100%); }
 }
 @keyframes xp-balloon {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(3); }
-  100% { transform: scale(1); }
+  0%   { transform: scale(1);  }
+  50%  { transform: scale(10); }
+  100% { transform: scale(1);  }
+}
+@keyframes xp-flash {
+  from { opacity: 1;    }
+  to   { opacity: 0.15; }
 }
 
 /* respect reduced-motion */

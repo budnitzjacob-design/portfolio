@@ -139,6 +139,11 @@ a {
   gap: 4px;
 }
 
+/* Mobile-only override: tighten the column 25% (per design ticket) */
+@media (max-width: 768px) {
+  .index-nav { gap: 3px; }
+}
+
 .index-name {
   color: #ffd900;
   font-family: 'Bauhaus', serif;
@@ -188,11 +193,11 @@ a {
 }
 @media (max-width: 768px) {
   .index-name { font-size: 42px; letter-spacing: 4px; margin-bottom: 28px; }
-  .index-link { font-size: 22px; letter-spacing: 8px; }
+  .index-link { font-size: 16.5px; letter-spacing: 6px; margin: 1px 0; }
 }
 @media (max-width: 480px) {
   .index-name { font-size: 28px; letter-spacing: 3px; margin-bottom: 20px; }
-  .index-link { font-size: 16px; letter-spacing: 5px; }
+  .index-link { font-size: 12px; letter-spacing: 4px; margin: 1px 0; }
   .index-container { padding: 20px; }
 }
 
@@ -209,7 +214,7 @@ a {
 }
 @media (max-height: 540px) {
   .index-name { font-size: 36px; letter-spacing: 3px; margin-bottom: 10px; }
-  .index-link { font-size: 18px; letter-spacing: 6px; }
+  .index-link { font-size: 13.5px; letter-spacing: 4px; margin: 1px 0; }
 }
 
 
@@ -790,6 +795,265 @@ a {
 @media (max-width: 480px) {
   .biocooler-body { font-size: 11pt; }
   .bc-inner { padding: 1.5rem 1rem; }
+}
+
+
+/* ============================================
+   XP DIALOG — landing easter egg
+   --------------------------------------------
+   Style guide (Windows XP "Silver" theme — greyscale Luna).
+   Goal: read as authentic XP without introducing any new
+   hue to a yellow-on-black landing page. No reds, no blues.
+
+   COLOR TOKENS
+     --xp-titlebar-top : #BDBAAD
+     --xp-titlebar-mid : #9C998D
+     --xp-titlebar-bot : #82807D
+     --xp-titlebar-text: #FFFFFF
+     --xp-window-bg    : #ECE9D8   (canonical XP "Bone")
+     --xp-window-border: #4D4B43
+     --xp-window-hilite: #E1DFD6
+     --xp-button-top   : #FDFDFD
+     --xp-button-bot   : #C9C7BA
+     --xp-button-border: #6E6A5F
+     --xp-button-focus : #2E2E2E   (dotted, default button only)
+     --xp-text         : #000000
+     --xp-shadow       : 0 6px 24px rgba(0,0,0,0.45)
+   TYPOGRAPHY
+     family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif
+     title : 11px / 700 / 1px text-shadow rgba(0,0,0,0.4)
+     body  : 11px / 1.45 / 400
+     button: 11px / 400  / text-align:center
+   GEOMETRY
+     window 320px wide, top corners rounded 6px (XP signature),
+     bottom flat. 1px outer border + 1px inner highlight.
+     title bar: 22px tall, padding 0 4px 0 8px.
+     caption buttons: 21x18, gap 2px.
+     body padding: 14px 16px.
+     button row: padding 0 12px 12px, gap 6px, justify-content flex-end.
+     button: min-width 90px, padding 4px 12px, border-radius 3px.
+   ANIMATION
+     wiggle  — rotate(-4deg)→rotate(4deg), 0.12s infinite alternate
+     marquee — translateX(100%)→translateX(-100%), 6s linear infinite
+     balloon — scale(1)→scale(3)→scale(1), 4s ease-in-out, 1 cycle
+   ============================================ */
+.xp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.28);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.xp-overlay.is-open {
+  display: flex;
+  animation: xp-overlay-fade 120ms ease-out;
+}
+@keyframes xp-overlay-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.xp-window {
+  width: 320px;
+  max-width: calc(100vw - 24px);
+  background: #ECE9D8;
+  color: #000;
+  border: 1px solid #4D4B43;
+  border-radius: 6px 6px 0 0;
+  box-shadow:
+    inset 0 0 0 1px #E1DFD6,
+    0 6px 24px rgba(0, 0, 0, 0.45);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.xp-titlebar {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 3px 0 8px;
+  border-radius: 5px 5px 0 0;
+  background:
+    linear-gradient(
+      to bottom,
+      #BDBAAD 0%,
+      #A8A597 45%,
+      #9C998D 55%,
+      #82807D 100%
+    );
+  border-bottom: 1px solid #4D4B43;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.2px;
+}
+.xp-title {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.xp-caption-buttons {
+  display: flex;
+  gap: 2px;
+}
+.xp-cap {
+  width: 21px;
+  height: 18px;
+  border: 1px solid #4D4B43;
+  border-radius: 2px;
+  background:
+    linear-gradient(to bottom, #FDFDFD 0%, #DCD9CA 60%, #B8B5A6 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  color: #000;
+  font: 700 10px/1 "Marlett", Tahoma, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  padding: 0;
+}
+.xp-cap.xp-cap--close { font-weight: 700; }
+.xp-cap.xp-cap--close:hover { background: linear-gradient(to bottom, #FFF 0%, #E5E2D3 60%, #C2BFAF 100%); }
+.xp-cap:active { box-shadow: inset 0 1px 2px rgba(0,0,0,0.25); }
+
+.xp-body {
+  padding: 16px 16px 4px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #000;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.xp-icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #FFFFFF 0%, #DCD9CA 55%, #8A877B 100%);
+  border: 1px solid #4D4B43;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 22px;
+  color: #1a1a1a;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
+}
+.xp-message {
+  flex: 1 1 auto;
+}
+.xp-message-main {
+  font-size: 11px;
+  font-weight: 400;
+  margin: 2px 0 12px;
+}
+.xp-message-sub {
+  font-size: 10px;
+  color: #3a3a3a;
+  margin: 0;
+  font-style: italic;
+}
+
+.xp-buttons {
+  padding: 12px 12px 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.xp-btn {
+  min-width: 92px;
+  height: 23px;
+  padding: 0 12px;
+  border: 1px solid #6E6A5F;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #FDFDFD 0%, #ECE9D8 50%, #C9C7BA 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+  font: 11px/1 Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.xp-btn:hover {
+  border-color: #2E2E2E;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #F1EEDD 50%, #D4D2C5 100%);
+}
+.xp-btn:active {
+  background: linear-gradient(to bottom, #C9C7BA 0%, #ECE9D8 50%, #FDFDFD 100%);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+}
+.xp-btn--default {
+  border-color: #2E2E2E;
+  outline: 1px dotted #2E2E2E;
+  outline-offset: -4px;
+}
+
+/* span wrapper inside each button — the thing that animates */
+.xp-btn .xp-btn-text {
+  display: inline-block;
+  white-space: nowrap;
+  transform-origin: center center;
+}
+
+/* easter-egg state, applied to .xp-window after 10s further idle */
+.xp-window.is-cooking .xp-message-main {
+  display: inline-block;
+  animation: xp-balloon 4000ms ease-in-out 1;
+  transform-origin: left center;
+}
+.xp-window.is-cooking .xp-btn--default .xp-btn-text {
+  animation: xp-wiggle 120ms ease-in-out infinite alternate;
+}
+.xp-window.is-cooking .xp-btn--scroll .xp-btn-text {
+  animation: xp-marquee 6s linear infinite;
+}
+
+@keyframes xp-wiggle {
+  from { transform: rotate(-4deg) translateY(-1px); }
+  to   { transform: rotate(4deg)  translateY(1px); }
+}
+@keyframes xp-marquee {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(-100%); }
+}
+@keyframes xp-balloon {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(3); }
+  100% { transform: scale(1); }
+}
+
+/* respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .xp-window.is-cooking .xp-message-main,
+  .xp-window.is-cooking .xp-btn--default .xp-btn-text,
+  .xp-window.is-cooking .xp-btn--scroll  .xp-btn-text {
+    animation: none;
+  }
+}
+
+/* small phones — keep dialog readable */
+@media (max-width: 360px) {
+  .xp-window { width: calc(100vw - 24px); }
+  .xp-buttons { justify-content: center; }
+  .xp-btn { min-width: 0; flex: 1 1 auto; }
 }
 
 

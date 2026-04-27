@@ -33,5 +33,109 @@
       <img src="images/2ballssmall.jpg" alt="" loading="lazy">
     </picture>
   </div>
+
+  <!-- XP idle dialog (easter egg) -->
+  <div class="xp-overlay" id="xp-overlay" role="dialog" aria-modal="true" aria-labelledby="xp-title" aria-describedby="xp-msg" hidden>
+    <div class="xp-window" id="xp-window">
+      <div class="xp-titlebar">
+        <span class="xp-title" id="xp-title">Notice</span>
+        <span class="xp-caption-buttons">
+          <button type="button" class="xp-cap" aria-label="Minimize" tabindex="-1">_</button>
+          <button type="button" class="xp-cap" aria-label="Maximize" tabindex="-1">&#9633;</button>
+          <button type="button" class="xp-cap xp-cap--close" id="xp-close-x" aria-label="Close">&times;</button>
+        </span>
+      </div>
+      <div class="xp-body">
+        <div class="xp-icon" aria-hidden="true">i</div>
+        <div class="xp-message">
+          <p class="xp-message-main" id="xp-msg">Don&rsquo;t just stand there, click something!</p>
+          <p class="xp-message-sub">stay idle for 10 seconds to see site easter egg</p>
+        </div>
+      </div>
+      <div class="xp-buttons">
+        <button type="button" class="xp-btn xp-btn--default" id="xp-btn-yes">
+          <span class="xp-btn-text">Yes, I will click something!</span>
+        </button>
+        <button type="button" class="xp-btn xp-btn--scroll" id="xp-btn-no">
+          <span class="xp-btn-text">Free will does not exist.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var IDLE_MS = 10000;
+      var overlay = document.getElementById('xp-overlay');
+      var win     = document.getElementById('xp-window');
+      var btnYes  = document.getElementById('xp-btn-yes');
+      var btnNo   = document.getElementById('xp-btn-no');
+      var btnX    = document.getElementById('xp-close-x');
+      if (!overlay) return;
+
+      var openTimer = null;
+      var cookTimer = null;
+      var isOpen    = false;
+
+      function clearOpenTimer() { if (openTimer) { clearTimeout(openTimer); openTimer = null; } }
+      function clearCookTimer() { if (cookTimer) { clearTimeout(cookTimer); cookTimer = null; } }
+
+      function armOpenTimer() {
+        clearOpenTimer();
+        openTimer = setTimeout(openDialog, IDLE_MS);
+      }
+
+      function openDialog() {
+        if (isOpen) return;
+        isOpen = true;
+        overlay.hidden = false;
+        overlay.classList.add('is-open');
+        // arm easter egg after another 10s of inactivity (while dialog is up)
+        clearCookTimer();
+        cookTimer = setTimeout(function () {
+          win.classList.add('is-cooking');
+        }, IDLE_MS);
+      }
+
+      function closeDialog() {
+        if (!isOpen) return;
+        isOpen = false;
+        overlay.classList.remove('is-open');
+        overlay.hidden = true;
+        win.classList.remove('is-cooking');
+        clearCookTimer();
+        // re-arm so the dialog will reappear on the next idle period
+        armOpenTimer();
+      }
+
+      function onActivity() {
+        if (isOpen) {
+          // any activity while dialog is open resets the cook timer (but does not close)
+          clearCookTimer();
+          win.classList.remove('is-cooking');
+          cookTimer = setTimeout(function () {
+            win.classList.add('is-cooking');
+          }, IDLE_MS);
+          return;
+        }
+        armOpenTimer();
+      }
+
+      var events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll', 'wheel'];
+      for (var i = 0; i < events.length; i++) {
+        window.addEventListener(events[i], onActivity, { passive: true });
+      }
+
+      btnYes.addEventListener('click', closeDialog);
+      btnNo.addEventListener('click', closeDialog);
+      btnX.addEventListener('click', closeDialog);
+      // Esc also closes
+      window.addEventListener('keydown', function (e) {
+        if (isOpen && (e.key === 'Escape' || e.keyCode === 27)) closeDialog();
+      });
+
+      armOpenTimer();
+    })();
+  </script>
 </body>
 </html>

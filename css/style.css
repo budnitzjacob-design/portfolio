@@ -578,32 +578,37 @@ a {
    ARTWORKS PAGE
    ============================================ */
 .artworks-body {
-  background-color: #000;
+  background-color: #0000AA;
   color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Lucida Console', 'Lucida Sans Typewriter', Monaco, 'Courier New', monospace;
 }
 
+.artworks-body .back-nav { color: #fff; }
+
 .artworks-title {
-  font-family: 'Conthrax', sans-serif;
-  font-size: 100px;
+  font-family: 'Lucida Console', 'Lucida Sans Typewriter', Monaco, 'Courier New', monospace;
+  font-size: 64px;
   text-align: center;
   margin-bottom: 30px;
+  letter-spacing: 2px;
 }
 .artworks-subtitle {
-  font-family: 'JetBrainsMono', monospace;
+  font-family: 'Lucida Console', 'Lucida Sans Typewriter', Monaco, 'Courier New', monospace;
   font-size: 16px;
-  opacity: 0.5;
+  opacity: 1;
+  letter-spacing: 1px;
 }
 
 @media (max-width: 768px) {
-  .artworks-title { font-size: 48px; }
+  .artworks-title { font-size: 40px; }
 }
 @media (max-width: 480px) {
-  .artworks-title { font-size: 32px; }
+  .artworks-title { font-size: 28px; }
 }
 
 

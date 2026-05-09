@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <title>Curriculum Vitae — Jacob Budnitz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <script src="tracker.js" defer></script>
@@ -148,6 +151,9 @@
     <div class="research-year">2025<br>&ndash;<br>2024</div>
     <div class="research-entry"><strong>Single Use Rapid Body Cooling</strong><br>Developed single-use rapid-cooling concepts using environmentally conscious endothermic reactions for glabrous-skin cooling; first named inventor on related provisional patent.</div>
 
+    <div class="research-year">2026</div>
+    <div class="research-entry"><strong>Manufacturing of Non-Plasticizable, Bio-Compatible Polymers</strong> <em>Lead Engineer</em><br>Privately contracted to develop easily manufacturable, non-plasticizable, biocompatible polymers.</div>
+
     <div id="biology" class="research-project-subtitle" data-project-subsection>BIOLOGY</div>
 
     <div class="research-year">2026</div>
@@ -174,8 +180,11 @@
     <div class="research-year">2026</div>
     <div class="research-entry"><strong><a class="research-entry-link" href="https://syllabus.fly.dev/" target="_blank" rel="noopener noreferrer">Syllabus</a></strong><br>Syllabus is a central repository for tools I construct to accelerate and improve medical education, including:
       <ul class="research-bullets">
-        <li><a class="research-entry-link" href="https://syllabus.fly.dev/" target="_blank" rel="noopener noreferrer">Syllabus platform</a>: interactive study tools, including nephrology practice questions and anatomy drilling workflows</li>
-        <li>Anki-Claude: extension that integrates Claude directly into Anki for rapid &amp; contextually aware explanation generation</li>
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/nephrology-practice-questions-comprehensive" target="_blank" rel="noopener noreferrer">Nephrology Practice Questions: Comprehensive</a>: renal review questions organized by week and topic</li>
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/nephrology-practice-question-player" target="_blank" rel="noopener noreferrer">Nephrotic &amp; Nephritic Syndromes Practice Question Player</a>: interactive questions with explanations and progress tracking</li>
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/anatomy-slayer-2" target="_blank" rel="noopener noreferrer">Anatomy Slayer 2</a>: rapid anatomy drilling tool</li>
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/nephrotic-nephritic-disorders-cheat-sheet" target="_blank" rel="noopener noreferrer">Nephrotic &amp; Nephritic Syndromes Cheat Sheet</a>: interactive syndrome reference</li>
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/anki-claude" target="_blank" rel="noopener noreferrer">Anki-Claude</a>: Claude-integrated Anki add-on for on-demand explanations</li>
       </ul>
     </div>
 
@@ -341,14 +350,23 @@
         const active = sectionLinks.find((link) => link.getAttribute("href") === `#${section.id}`);
         if (!active) return;
         sectionLinks.forEach((link) => link.classList.toggle("active", link === active));
+        setIndicator(active);
+      }
+
+      function setIndicator(active) {
+        if (!active || !indicator) return;
         indicator.style.height = `${active.offsetHeight}px`;
         indicator.style.transform = `translateY(${active.offsetTop}px)`;
       }
 
       function setProjectActive(project) {
+        let activeProject = null;
         projectLinks.forEach((link) => {
-          link.classList.toggle("active", Boolean(project) && link.getAttribute("href") === `#${project.id}`);
+          const isActive = Boolean(project) && link.getAttribute("href") === `#${project.id}`;
+          link.classList.toggle("active", isActive);
+          if (isActive) activeProject = link;
         });
+        return activeProject;
       }
 
       function updateNav() {
@@ -361,7 +379,8 @@
         nav?.classList.toggle("projects-open", Boolean(inProjects));
 
         if (inProjects) {
-          setProjectActive(currentFrom(projectSubsections, 0.65));
+          const activeProject = setProjectActive(currentFrom(projectSubsections, 0.65));
+          if (activeProject) setIndicator(activeProject);
         } else {
           setProjectActive(null);
         }

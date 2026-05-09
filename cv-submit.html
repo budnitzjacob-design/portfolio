@@ -1,151 +1,563 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Jacob Budnitz CV</title><style>body{font-family:"Times New Roman",serif;color:#000;margin:42px auto;max-width:900px;line-height:1.28}h1.name{text-align:center;font-size:28px;margin:0 0 4px}p.contact{text-align:center;margin:0 0 3px}p.links{text-align:center;margin:0 0 22px}h2{font-family:Arial,sans-serif;text-align:center;font-size:22px;margin:28px 0 12px;letter-spacing:.02em}h3{font-family:Arial,sans-serif;text-align:center;font-size:17px;margin:22px 0 10px}table{width:100%;border-collapse:collapse;margin-bottom:4px}td{vertical-align:top;padding:3px 0 9px}.year{width:120px;text-align:center;padding-right:24px}ul{margin:5px 0 0 1.1em;padding-left:1em}a{color:#000;text-decoration:underline}@media print{body{margin:.45in;max-width:none}h2{break-after:avoid}tr{break-inside:avoid}}</style></head><body>
-<h1 class="name">JACOB BUDNITZ</h1>
-<p class="contact">jacob@arteriatechnology.com | (678) 983 5595 | jacobbudnitz@gmail.com</p>
-<p class="links"><a href="https://scholar.google.com/citations?user=j8w4XKsAAAAJ&amp;hl=en">Google Scholar</a> | <a href="https://www.linkedin.com/in/jacob-budnitz-0022961b4/">LinkedIn</a></p>
-<h2>EDUCATION</h2>
-<table><tr><td class="year">2029<br>–<br>2025</td><td><strong>Emory University School of Medicine</strong><br>M.D. Candidate</td></tr>
-<tr><td class="year">2024<br>–<br>2020</td><td><strong>Stanford University</strong><br>B.A., Political Science and Government<br>GPA: 3.96/4.00; GPA in Major: 4.00/4.00</td></tr>
-<tr><td class="year">2019<br>–<br>2018</td><td><strong>Georgia Institute of Technology</strong><br>Coursework spanning linear algebra, matrix theory, and multivariable calculus
-      <ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Curriculum Vitae — Jacob Budnitz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+@font-face {
+  font-family: 'Bauhaus';
+  src: url('https://jacobbudnitz.com/fonts/BauhausRegular.woff2') format('woff2'),
+       url('https://jacobbudnitz.com/fonts/BauhausRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bauhaus';
+  src: url('https://jacobbudnitz.com/fonts/BauhausBold.woff2') format('woff2'),
+       url('https://jacobbudnitz.com/fonts/BauhausBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+.back-nav {
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  z-index: 100;
+  font-family: 'Bauhaus', serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 4px;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.back-nav:hover { opacity: 1; }
+.back-nav.dark { color: #000; }
+.research-body {
+  background-color: #e2e4d2;
+  color: #000;
+  padding-bottom: 80px;
+}
+.research-section-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 40px;
+  text-align: center;
+  margin: 60px 0 30px;
+  font-weight: 700;
+  scroll-margin-top: 34px;
+}
+.cv-section-anchor {
+  display: block;
+  height: 0;
+  margin-top: 0;
+  scroll-margin-top: 34px;
+}
+.research-grid {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.research-year {
+  font-family: 'Times New Roman', serif;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 2px;
+}
+.research-year a { color: inherit; text-decoration: none; }
+.research-entry {
+  font-family: 'Times New Roman', serif;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.research-entry em { font-style: italic; }
+.research-entry strong { font-weight: 700; }
+.research-bullets { margin: 4px 0 0 1.1em; padding: 0; }
+.research-bullets li { margin: 0 0 2px; padding-left: 0.12em; }
+.research-bullets li::marker { color: #000; font-size: 0.72em; }
+.research-entry-link {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.38);
+  transition: border-color 0.18s, opacity 0.18s;
+}
+.research-entry-link:hover { border-color: #000; opacity: 0.72; }
+.research-project-subtitle {
+  grid-column: 1 / -1;
+  font-family: 'Times New Roman', serif;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-align: center;
+  margin: 60px 0 30px;
+  scroll-margin-top: 34px;
+}
+.cv-section-nav {
+  position: fixed;
+  top: 62px;
+  right: 24px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 178px;
+  padding-left: 14px;
+  font-family: 'Comfortaa', sans-serif;
+}
+.cv-section-link {
+  color: #5d5d5d;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: 0.05em;
+  text-align: left;
+  transition: color 0.18s;
+}
+.cv-section-link:hover, .cv-section-link.active { color: #000; }
+.cv-project-subnav {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  margin: -3px 0 2px 10px;
+}
+.cv-section-nav.projects-open .cv-project-subnav { display: flex; }
+.cv-project-subnav-link {
+  color: #5d5d5d;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  transition: color 0.18s;
+}
+.cv-project-subnav-link:hover, .cv-project-subnav-link.active { color: #000; }
+.cv-section-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 16px;
+  background: #000;
+  transform: translateY(0);
+  transition: transform 0.22s ease, height 0.22s ease;
+}
+@media (max-width: 1260px) { .cv-section-nav { display: none; } }
+@media (max-width: 768px) {
+  .back-nav { position: static; display: inline-block; margin: 18px 0 0 18px; }
+  .research-grid { grid-template-columns: 70px 1fr; padding: 0 16px; gap: 8px 16px; }
+  .research-entry { font-size: 16px; }
+  .research-year { font-size: 16px; }
+  .research-section-title { font-size: 28px; }
+  .research-project-subtitle { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .research-grid { grid-template-columns: 1fr; }
+  .research-year { text-align: left; font-weight: 700; margin-top: 16px; }
+  .research-section-title { font-size: 24px; }
+  .research-project-subtitle { font-size: 24px; }
+}
+@media print {
+  .back-nav, .cv-section-nav { display: none !important; }
+  .research-body { background: #fff; padding-bottom: 0; }
+  .research-section-title, .research-project-subtitle { break-after: avoid; }
+  .research-grid { max-width: none; padding: 0; }
+  .research-entry, .research-year { font-size: 12pt; }
+  .research-section-title, .research-project-subtitle { font-size: 22pt; }
+}
+</style>
+</head>
+<body class="research-body">
+<a href="https://jacobbudnitz.com/" class="back-nav dark">← HOME</a>
+
+  <nav class="cv-section-nav" aria-label="CV sections">
+    <span class="cv-section-indicator" aria-hidden="true"></span>
+    <a href="#education" class="cv-section-link">EDUCATION</a>
+    <a href="#publications" class="cv-section-link">PUBLICATIONS &amp; PATENTS</a>
+    <a href="#presentations" class="cv-section-link">PRESENTATIONS</a>
+    <a href="#invited-lectures" class="cv-section-link">INVITED LECTURES</a>
+    <a href="#selected-projects" class="cv-section-link cv-selected-projects-link">SELECTED PROJECTS</a>
+    <div class="cv-project-subnav" aria-label="Selected project subsections">
+      <a href="#clinical-ai" class="cv-project-subnav-link">CLINICAL AI</a>
+      <a href="#material-science" class="cv-project-subnav-link">MATERIAL SCIENCE</a>
+      <a href="#biology" class="cv-project-subnav-link">BIOLOGY</a>
+      <a href="#biomedical-engineering" class="cv-project-subnav-link">BIOMEDICAL ENGINEERING</a>
+      <a href="#medical-education" class="cv-project-subnav-link">MEDICAL EDUCATION</a>
+      <a href="#creative-works" class="cv-project-subnav-link">CREATIVE WORKS</a>
+    </div>
+    <a href="#experience" class="cv-section-link">EXPERIENCE</a>
+    <a href="#honors" class="cv-section-link">HONORS &amp; AWARDS</a>
+    <a href="#leadership" class="cv-section-link">LEADERSHIP</a>
+    <a href="#additional-areas" class="cv-section-link">ADDITIONAL AREAS OF STUDY</a>
+  </nav>
+
+  <!-- EDUCATION -->
+  <div id="education" class="research-section-title" data-cv-section>EDUCATION</div>
+  <div class="research-grid">
+    <div class="research-year">2029<br>–<br>2025</div>
+    <div class="research-entry"><strong>Emory University School of Medicine</strong><br>M.D. Candidate</div>
+
+    <div class="research-year">2024<br>–<br>2020</div>
+    <div class="research-entry"><strong>Stanford University</strong><br>B.A., Political Science and Government<br>GPA: 3.96/4.00; GPA in Major: 4.00/4.00</div>
+
+    <div class="research-year">2019<br>–<br>2018</div>
+    <div class="research-entry"><strong>Georgia Institute of Technology</strong><br>Coursework spanning linear algebra, matrix theory, and multivariable calculus
+      <ul class="research-bullets">
         <li>Enrolled at 16, in lieu of high school</li>
       </ul>
-    </td></tr></table>
-<h2>PUBLICATIONS &amp; PATENTS</h2>
-<table><tr><td class="year">In<br>progress</td><td>Budnitz J, Weinberg B. Retrieval-Augmented Generation for Hyper-Accurate and Properly Cited Responses to Questions in Neuroradiology. In progress.</td></tr>
-<tr><td class="year">Under<br>review</td><td>Wang J, Waldman J, Budnitz J, Harrison T, Albin C, Weinberg B. Assessing the Effectiveness of Spaced Repetition Learning in Radiology Medical Education. <em>Current Problems in Diagnostic Radiology</em>. Under review.</td></tr>
-<tr><td class="year">2025</td><td>Budnitz, JB. Phase-Change Methods for Cooling Glabrous Skin; U.S. Patent Application No. 18/485,200; published as U.S. Patent Application Publication No. 2025/0057690 on February 20, 2025.</td></tr>
-<tr><td class="year">2024</td><td>Budnitz, JB. Ketamine and Consent: Investigating Patient Capacity During Intravenous Ketamine Therapy. In progress.</td></tr>
-<tr><td class="year">2024</td><td>Budnitz, JB, et al. Endothermic Reactions for Single-Use Palmar Cooling; U.S. Provisional Patent Application No. 63/705,266. First named inventor.</td></tr>
-<tr><td class="year">2023</td><td>Budnitz, JB. Phase-Change Methods for Cooling Glabrous Skin; U.S. Provisional Patent Application No. 63/578,602.</td></tr>
-<tr><td class="year"><a href="https://stanforddaily.com/2022/01/06/from-the-community-not-recording-lectures-incentivizes-sick-students-to-come-to-class/">2022</a></td><td>Budnitz, J. &quot;Not Recording Lectures Incentivizes Sick Students to Come to Class.&quot; <em>Stanford Daily</em>, January 6, 2022.</td></tr>
-<tr><td class="year"><a href="https://www.publichealthtoxicology.com/Child-safety-of-liquid-nicotine-bottles-We-must-do-better,152889,0,2.html">2022</a></td><td>Budnitz, J., Cavanaugh, J., Hon, S. L. (2022). Child safety of liquid nicotine bottles: We must do better. <em>Public Health and Toxicology</em>, 2(3), 14. https://doi.org/10.18332/pht/152889</td></tr>
-<tr><td class="year"><a href="https://journals.sagepub.com/doi/full/10.1177/8755122520911208">2020</a></td><td>Budnitz J, Hon S, Punzi J. The Efficacy of Flow Restrictors on Children&#x27;s Liquid Acetaminophen Products. <em>Journal of Pharmacy Technology</em>. 2020;36(3):114-116. doi:10.1177/8755122520911208</td></tr></table>
-<h2>PRESENTATIONS</h2>
-<table><tr><td class="year">2023</td><td>Budnitz J. Ketamine and Consent: An Investigation of Patient Capacity During Intravenous Ketamine Therapy. <em>Symposia of Undergraduate Research and Public Service</em>; October 2023; Stanford, CA.</td></tr>
-<tr><td class="year">2020</td><td>Budnitz J, Cavanaugh J, Hon S. Are Vape Juice Bottles Effective in Preventing Pediatric Deaths When &quot;Sucked&quot; On? <em>North American Congress of Clinical Toxicology</em>; September 10-14, 2020; San Francisco, CA.</td></tr>
-<tr><td class="year">2019</td><td>Budnitz J, Hon S, Punzi J. Amount of Medication Released in Child Safety Testing Varies for Different Acetaminophen Products and Flow Restrictor Types. <em>American College of Clinical Pharmacists Annual Meeting</em>; October 26-29, 2019; New York, NY.</td></tr></table>
-<h2>INVITED LECTURES</h2>
-<table><tr><td class="year">2024</td><td>Budnitz J, Janarthanan S. Biotechnology &amp; Entrepreneurship. <em>Aga Khan University Entrepreneurial Society Speaker Series</em>; June 1, 2024; Karachi, Pakistan (virtual).</td></tr></table>
-<h2>EXPERIENCE</h2>
-<table><tr><td class="year">2026<br>–<br>2025</td><td><strong>Advising for Georgia Tech Biomedical Engineering Capstone</strong><br>Advised biomedical-engineering capstone students on research and prototyping for novel fixation and sealing approaches for thoracic aortic stents.</td></tr>
-<tr><td class="year">Present<br>–<br>2026</td><td><strong>Stanford Biodesign Fellows Team</strong> <em>Medical Device Consultant</em>
-      <ul>
-        <li>Consult for a Stanford Biodesign team developing accessible palmar cooling devices to alleviate multiple sclerosis-related tremor</li>
-        <li>Provide thermoregulation, product strategy, translational research, and technical landscape guidance while keeping phase-change material implementation details confidential</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">Present<br>–<br>2025</td><td><strong>Emory University Department of Radiology and Imaging Sciences</strong> <em>AI Engineer; Medical Education Researcher</em>
-      <ul>
-        <li>Independently building a retrieval-augmented generation (RAG) system with Dr. Brent Weinberg for neuroradiology education and workflow support; own architecture, corpus design, retrieval strategy, prompt/evaluation loop, and implementation</li>
-        <li>Medical education research: co-authored manuscript under review in <em>Current Problems in Diagnostic Radiology</em> evaluating an image-rich neuroradiology Anki deck for medical student education</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">2025<br>–<br>2024</td><td><strong>Arteria Technology, Inc.</strong> <em>Chief Innovation Officer; Scientific Advisor</em>
-      <div>Invented a rapid body cooling system that increased human walking endurance &gt;40% above the natural limit and decreased the cost and size of rapid body cooling by an order of magnitude. This device surmounted the economic and manufacturing hurdles that previously hindered rapid body cooling&#x27;s accessibility, and was acquired by Arteria Technology.</div>
-      <ul>
-        <li>Led the company&#x27;s research and development of novel rapid body cooling devices</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">2023</td><td><strong>Maria X Martinez Street Medicine Clinic / Zuckerberg San Francisco General</strong> <em>Street Medicine Volunteer</em>
-      <ul>
-        <li>First and only volunteer at San Francisco General Hospital&#x27;s public clinic for the homeless in the Tenderloin</li>
-        <li>Triaged patients, took vitals, disinfected and bandaged wounds, administered EKGs, and connected patients experiencing abuse with social workers</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">2023</td><td><strong>Santa Clara County Public Health Department</strong> <em>Harm Reduction Team Volunteer</em>
-      <ul>
-        <li>Supported public health staff providing sanitation supplies, clean needles, STD exams, and other harm-reduction services in Gilroy, California</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">2024<br>–<br>2022</td><td><strong>Stanford Synapse / Glial Buddies Peer Support Committee</strong> <em>Emotional/Peer Support Counselor</em>
-      <ul>
-        <li>Organized opportunities for students to provide 1:1 emotional support and companionship to individuals coping with traumatic brain injury</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">2022</td><td><strong>Emory University</strong> <em>Research Assistant</em>
-      <ul>
-        <li>Researched emerging ethical dilemmas in medicine, developed proposed frameworks, and presented findings</li>
-        <li>Developed curriculum for practicing physicians on medical ethics and practical approaches to resolving clinical ethical dilemmas; presented at the Southern Hospital Medicine Conference in October 2022</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">2022</td><td><strong>Emory Healthcare Ethics Committee</strong> <em>Student Observer</em>
-      <ul>
-        <li>Observed the committee&#x27;s monthly review of medical-ethics dilemmas and inpatient ethics consults, building practical familiarity with clinical ethics deliberation</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">2021</td><td><strong>InnerMind NFT</strong> <em>Chief Financial Officer &amp; Lead DeFi Analyst</em>
-      <ul>
-        <li>Created NFTs with generative AI; analyzed market trends to optimize release timing; generated 100k in revenue in two months</li>
-        <li>Recognition: <em>Oxford Business Review</em>, &quot;The Digital Trading Card: The Rapid and Astounding Rise of NFTs&quot;</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">2022<br>–<br>2019</td><td><strong>Georgia Poison Center</strong> <em>Researcher</em>
-      <ul>
-        <li>Identified pediatric poisoning risks from concentrated flavored nicotine bottles used in refillable e-cigarettes; designed and conducted trials and statistical analyses</li>
-        <li>First-authored publication and presented findings at the North American Congress of Clinical Toxicology</li>
-      </ul>
-    </td></tr>
-<tr><td class="year">2018</td><td><strong>Centers for Disease Control and Prevention</strong> <em>Research Technician</em>
-      <ul>
-        <li>Conducted more than 200 validation trials evaluating ASTM standards used to assess pediatric medication safety</li>
-      </ul>
-    </td></tr></table>
-<h2>HONORS &amp; AWARDS</h2>
-<table><tr><td class="year">2026</td><td>1st Prize, IHI National Case Competition, Institute for Healthcare Improvement.</td></tr>
-<tr><td class="year">2023</td><td>Stanford Major Grant, awarded for student-led full-time research on consent practices in intravenous ketamine therapy.</td></tr>
-<tr><td class="year">2024<br>–<br>2021</td><td>Stanford Club Swim Team; 11x College Club Swimming Nationals Qualifier.</td></tr>
-<tr><td class="year">2020<br>–<br>2016</td><td>Competitive Swimming: 3x Georgia State Champion; 2x High School All-American; USA Swimming Scholastic All-American.</td></tr></table>
-<h2>LEADERSHIP</h2>
-<table><tr><td class="year">2024<br>–<br>2023</td><td><strong>Stanford Administrative Panel for Human Subjects Research</strong><br>Voting member appointed to review research protocols and protect the rights and welfare of human research subjects.</td></tr>
-<tr><td class="year">2024<br>–<br>2022</td><td><strong>Stanford University Judicial Panel</strong><br>Voting member appointed to adjudicate potential violations of the Stanford Honor Code and Fundamental Standard.</td></tr></table>
-<h2>SELECTED PROJECTS</h2>
-<h3>CLINICAL AI</h3><table><tr><td class="year">Present<br>–<br>2026</td><td><strong>Large Language Models with Retrieval-Augmented Generation for Diagnostic Radiology</strong> <em>Lead AI Engineer</em><br>Using retrieval-augmented generation (RAG) to create hyper-accurate, minimal-hallucination, citation-enabled large language models (LLMs) for neuroradiology in collaboration with Dr. Brent Weinberg, MD, PhD, Director, Division of Neuroradiology - Emory University.
-      <ul>
+    </div>
+  </div>
+
+  <!-- PUBLICATIONS & PATENTS -->
+  <div id="publications" class="research-section-title" data-cv-section>PUBLICATIONS &amp; PATENTS</div>
+  <div class="research-grid">
+    <div class="research-year">In<br>progress</div>
+    <div class="research-entry">Budnitz J, Weinberg B. Retrieval-Augmented Generation for Hyper-Accurate and Properly Cited Responses to Questions in Neuroradiology. In progress.</div>
+
+    <div class="research-year">Under<br>review</div>
+    <div class="research-entry">Wang J, Waldman J, Budnitz J, Harrison T, Albin C, Weinberg B. Assessing the Effectiveness of Spaced Repetition Learning in Radiology Medical Education. <em>Current Problems in Diagnostic Radiology</em>. Under review.</div>
+
+    <div class="research-year">2025</div>
+    <div class="research-entry">Budnitz, JB. Phase-Change Methods for Cooling Glabrous Skin; U.S. Patent Application No. 18/485,200; published as U.S. Patent Application Publication No. 2025/0057690 on February 20, 2025.</div>
+
+    <div class="research-year">2024</div>
+    <div class="research-entry">Budnitz, JB. Ketamine and Consent: Investigating Patient Capacity During Intravenous Ketamine Therapy. In progress.</div>
+
+    <div class="research-year">2024</div>
+    <div class="research-entry">Budnitz, JB, et al. Endothermic Reactions for Single-Use Palmar Cooling; U.S. Provisional Patent Application No. 63/705,266. First named inventor.</div>
+
+    <div class="research-year">2023</div>
+    <div class="research-entry">Budnitz, JB. Phase-Change Methods for Cooling Glabrous Skin; U.S. Provisional Patent Application No. 63/578,602.</div>
+
+    <div class="research-year"><a href="https://stanforddaily.com/2022/01/06/from-the-community-not-recording-lectures-incentivizes-sick-students-to-come-to-class/" target="_blank" rel="noopener noreferrer">2022</a></div>
+    <div class="research-entry">Budnitz, J. "Not Recording Lectures Incentivizes Sick Students to Come to Class." <em>Stanford Daily</em>, January 6, 2022.</div>
+
+    <div class="research-year"><a href="https://www.publichealthtoxicology.com/Child-safety-of-liquid-nicotine-bottles-We-must-do-better,152889,0,2.html" target="_blank" rel="noopener noreferrer">2022</a></div>
+    <div class="research-entry">Budnitz, J., Cavanaugh, J., Hon, S. L. (2022). Child safety of liquid nicotine bottles: We must do better. <em>Public Health and Toxicology</em>, 2(3), 14. https://doi.org/10.18332/pht/152889</div>
+
+    <div class="research-year"><a href="https://journals.sagepub.com/doi/full/10.1177/8755122520911208" target="_blank" rel="noopener noreferrer">2020</a></div>
+    <div class="research-entry">Budnitz J, Hon S, Punzi J. The Efficacy of Flow Restrictors on Children's Liquid Acetaminophen Products. <em>Journal of Pharmacy Technology</em>. 2020;36(3):114-116. doi:10.1177/8755122520911208</div>
+  </div>
+
+  <!-- PRESENTATIONS -->
+  <div id="presentations" class="research-section-title" data-cv-section>PRESENTATIONS</div>
+  <div class="research-grid">
+    <div class="research-year">2023</div>
+    <div class="research-entry">Budnitz J. Ketamine and Consent: An Investigation of Patient Capacity During Intravenous Ketamine Therapy. <em>Symposia of Undergraduate Research and Public Service</em>; October 2023; Stanford, CA.</div>
+
+    <div class="research-year">2020</div>
+    <div class="research-entry">Budnitz J, Cavanaugh J, Hon S. Are Vape Juice Bottles Effective in Preventing Pediatric Deaths When "Sucked" On? <em>North American Congress of Clinical Toxicology</em>; September 10-14, 2020; San Francisco, CA.</div>
+
+    <div class="research-year">2019</div>
+    <div class="research-entry">Budnitz J, Hon S, Punzi J. Amount of Medication Released in Child Safety Testing Varies for Different Acetaminophen Products and Flow Restrictor Types. <em>American College of Clinical Pharmacists Annual Meeting</em>; October 26-29, 2019; New York, NY.</div>
+  </div>
+
+  <!-- INVITED LECTURES -->
+  <div id="invited-lectures" class="research-section-title" data-cv-section>INVITED LECTURES</div>
+  <div class="research-grid">
+    <div class="research-year">2024</div>
+    <div class="research-entry">Budnitz J, Janarthanan S. Biotechnology &amp; Entrepreneurship. <em>Aga Khan University Entrepreneurial Society Speaker Series</em>; June 1, 2024; Karachi, Pakistan (virtual).</div>
+
+    <div class="research-year">2024</div>
+    <div class="research-entry">Budnitz J. Gene Editing &amp; Superhuman Enhancements. <em>Stanford Sigma Nu Second Spring Symposium</em>; May 28, 2024; Stanford, CA.</div>
+
+    <div class="research-year">2024</div>
+    <div class="research-entry">Budnitz J. How to Buy Greenland: A Foreign Policy Proposal. <em>Stanford Sigma Nu Spring Symposium</em>; April 20, 2024; Stanford, CA.</div>
+  </div>
+
+  <!-- SELECTED PROJECTS -->
+  <div id="selected-projects" class="cv-section-anchor" data-cv-section aria-label="Selected Projects"></div>
+  <div class="research-grid selected-projects-grid">
+    <div id="clinical-ai" class="research-project-subtitle" data-project-subsection>CLINICAL AI</div>
+
+    <div class="research-year">Present<br>–<br>2026</div>
+    <div class="research-entry"><strong>Large Language Models with Retrieval-Augmented Generation for Diagnostic Radiology</strong> <em>Lead AI Engineer</em><br>Using retrieval-augmented generation (RAG) to create hyper-accurate, minimal-hallucination, citation-enabled large language models (LLMs) for neuroradiology in collaboration with Dr. Brent Weinberg, MD, PhD, Director, Division of Neuroradiology - Emory University.
+      <ul class="research-bullets">
         <li>Developed research idea, system architecture, and evaluation criteria</li>
         <li>Scraped, cleaned, and embedded hours of expert lecture slides, transcripts, and written teaching materials, as well as clinically relevant PMC articles, StatPearls, and ACR guidelines</li>
         <li>Built custom evaluation harness to streamline reviewing model outputs en masse</li>
         <li>Currently exploring and evaluating model performance on expert clinical questions, differential diagnosis generation, and pedagogical abilities</li>
         <li>Pilot test results (n=30 clinical questions, LLM: Opus 4.7, retrieval: dense-lexical hybrid): zero hallucinations; zero physician-level reasoning errors; correct and appropriate citations</li>
       </ul>
-    </td></tr>
-<tr><td class="year">Present<br>–<br>2026</td><td><strong><a href="https://www.relaycallbell.com/">RELAY</a></strong>
+    </div>
+
+    <div class="research-year">Present<br>–<br>2026</div>
+    <div class="research-entry"><strong><a class="research-entry-link" href="https://www.relaycallbell.com/" target="_blank" rel="noopener noreferrer">RELAY</a></strong>
       <div>RELAY is an AI enabled call bell that triages the urgency of patient calls, displays live transcripts and supplemental patient history on centralized provider dashboards, and logs data about call outcomes, provider response metrics, and system-wide trends in a built in QI platform. RELAY works in 98 different languages and includes custom patient apps to ensure the platform is accessible to all</div>
-      <ul>
-        <li>Solo coded RELAY&#x27;s patient app, provider dashboard, and QI platform</li>
+      <ul class="research-bullets">
+        <li>Solo coded RELAY's patient app, provider dashboard, and QI platform</li>
         <li>Built systems to perform live, clinical grade transcription, translation, and summarization</li>
       </ul>
-    </td></tr></table>
-<h3>MATERIAL SCIENCE</h3><table><tr><td class="year">Present<br>–<br>2022</td><td><strong><a href="https://jacobbudnitz.com/thermoroid.html">Reusable Rapid Body Cooling</a></strong>
-      <ul>
-        <li>Decreased the cost and size of rapid body or &quot;palmar&quot; cooling by an order of magnitude</li>
+    </div>
+
+    <div id="material-science" class="research-project-subtitle" data-project-subsection>MATERIAL SCIENCE</div>
+
+    <div class="research-year">Present<br>–<br>2022</div>
+    <div class="research-entry"><strong><a class="research-entry-link" href="https://jacobbudnitz.com/thermoroid.html" target="_blank" rel="noopener noreferrer">Reusable Rapid Body Cooling</a></strong>
+      <ul class="research-bullets">
+        <li>Decreased the cost and size of rapid body or "palmar" cooling by an order of magnitude</li>
         <li>Developed phase change materials capable of precise temperature control and mass heat absorption</li>
         <li>Personally constructed &gt;300 prototypes &amp; devices, oversaw factory production of 1000, and commissioned to build custom editions for the U.S. Department of Defense</li>
         <li>Performed pilot human testing; device extended aerobic duration by 42% compared to control</li>
         <li>Transferred the IP to Arteria Technology after private acquisition (2024)</li>
       </ul>
-    </td></tr>
-<tr><td class="year">2025<br>–<br>2024</td><td><strong>Single Use Rapid Body Cooling</strong><br>Developed single-use rapid-cooling concepts using environmentally conscious endothermic reactions for glabrous-skin cooling; first named inventor on related provisional patent.</td></tr>
-<tr><td class="year">2026</td><td><strong>Manufacturing of Non-Plasticizable, Bio-Compatible Polymers</strong> <em>Lead Engineer</em><br>Privately contracted to develop easily manufacturable, non-plasticizable, biocompatible polymers.</td></tr></table>
-<h3>BIOLOGY</h3><table><tr><td class="year">2026</td><td><strong><a href="https://organism-logger.fly.dev/">Organism Logger</a></strong><br>Built a structured biology-observation logger for tracking organisms, phenotypes, environmental context, and experimental notes.</td></tr>
-<tr><td class="year">2026</td><td><strong><a href="https://peptocopeia.com/">Peptocopeia</a></strong><br>Built a source-backed peptide reference with citation review, vendor metadata, and moderator verification workflows.</td></tr></table>
-<h3>BIOMEDICAL ENGINEERING</h3><table><tr><td class="year">2024</td><td><strong><a href="https://jacobbudnitz.com/biocooler.html">BioCooler</a></strong>
-      <ul>
+    </div>
+
+    <div class="research-year">2025<br>–<br>2024</div>
+    <div class="research-entry"><strong>Single Use Rapid Body Cooling</strong><br>Developed single-use rapid-cooling concepts using environmentally conscious endothermic reactions for glabrous-skin cooling; first named inventor on related provisional patent.</div>
+
+    <div class="research-year">2026</div>
+    <div class="research-entry"><strong>Manufacturing of Non-Plasticizable, Bio-Compatible Polymers</strong> <em>Lead Engineer</em><br>Privately contracted to develop easily manufacturable, non-plasticizable, biocompatible polymers.</div>
+
+    <div id="biology" class="research-project-subtitle" data-project-subsection>BIOLOGY</div>
+
+    <div class="research-year">2026</div>
+    <div class="research-entry"><strong><a class="research-entry-link" href="https://organism-logger.fly.dev/" target="_blank" rel="noopener noreferrer">Organism Logger</a></strong><br>Built a structured biology-observation logger for tracking organisms, phenotypes, environmental context, and experimental notes.</div>
+
+    <div class="research-year">2026</div>
+    <div class="research-entry"><strong><a class="research-entry-link" href="https://peptocopeia.com/" target="_blank" rel="noopener noreferrer">Peptocopeia</a></strong><br>Built a source-backed peptide reference with citation review, vendor metadata, and moderator verification workflows.</div>
+
+    <div id="biomedical-engineering" class="research-project-subtitle" data-project-subsection>BIOMEDICAL ENGINEERING</div>
+
+    <div class="research-year">2024</div>
+    <div class="research-entry"><strong><a class="research-entry-link" href="https://jacobbudnitz.com/biocooler.html" target="_blank" rel="noopener noreferrer">BioCooler</a></strong>
+      <ul class="research-bullets">
         <li>Designed a modular system for electricity-independent cold-chain transport in resource-scarce and emergency settings powered by shelf stable, endothermic reactions</li>
         <li>Engineering schematics available for all to use in common</li>
       </ul>
-    </td></tr>
-<tr><td class="year">2026<br>–<br>2025</td><td><strong>Advising for Georgia Tech Biomedical Engineering Capstone</strong><br>Advised biomedical-engineering capstone students on research and prototyping for novel fixation and sealing approaches for thoracic aortic stents.</td></tr></table>
-<h3>MEDICAL EDUCATION</h3><table><tr><td class="year">2026</td><td><strong><a href="https://syllabus.fly.dev/">Syllabus</a></strong><br>Syllabus is a central repository for tools I construct to accelerate and improve medical education, including:
-      <ul>
-        <li><a href="https://syllabus.fly.dev/project/nephrology-practice-questions-comprehensive">Nephrology Practice Questions: Comprehensive</a>: renal review questions organized by week and topic</li>
-        <li><a href="https://syllabus.fly.dev/project/nephrology-practice-question-player">Nephrotic &amp; Nephritic Syndromes Practice Question Player</a>: interactive questions with explanations and progress tracking</li>
-        <li><a href="https://syllabus.fly.dev/project/anatomy-slayer-2">Anatomy Slayer 2</a>: rapid anatomy drilling tool</li>
-        <li><a href="https://syllabus.fly.dev/project/nephrotic-nephritic-disorders-cheat-sheet">Nephrotic &amp; Nephritic Syndromes Cheat Sheet</a>: interactive syndrome reference</li>
-        <li><a href="https://syllabus.fly.dev/project/anki-claude">Anki-Claude</a>: Claude-integrated Anki add-on for on-demand explanations</li>
+    </div>
+
+    <div class="research-year">2026<br>–<br>2025</div>
+    <div class="research-entry"><strong>Advising for Georgia Tech Biomedical Engineering Capstone</strong><br>Advised biomedical-engineering capstone students on research and prototyping for novel fixation and sealing approaches for thoracic aortic stents.</div>
+
+    <div id="medical-education" class="research-project-subtitle" data-project-subsection>MEDICAL EDUCATION</div>
+
+    <div class="research-year">2026</div>
+    <div class="research-entry"><strong><a class="research-entry-link" href="https://syllabus.fly.dev/" target="_blank" rel="noopener noreferrer">Syllabus</a></strong><br>Syllabus is a central repository for tools I construct to accelerate and improve medical education, including:
+      <ul class="research-bullets">
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/nephrology-practice-questions-comprehensive" target="_blank" rel="noopener noreferrer">Nephrology Practice Questions: Comprehensive</a>: renal review questions organized by week and topic</li>
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/nephrology-practice-question-player" target="_blank" rel="noopener noreferrer">Nephrotic &amp; Nephritic Syndromes Practice Question Player</a>: interactive questions with explanations and progress tracking</li>
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/anatomy-slayer-2" target="_blank" rel="noopener noreferrer">Anatomy Slayer 2</a>: rapid anatomy drilling tool</li>
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/nephrotic-nephritic-disorders-cheat-sheet" target="_blank" rel="noopener noreferrer">Nephrotic &amp; Nephritic Syndromes Cheat Sheet</a>: interactive syndrome reference</li>
+        <li><a class="research-entry-link" href="https://syllabus.fly.dev/project/anki-claude" target="_blank" rel="noopener noreferrer">Anki-Claude</a>: Claude-integrated Anki add-on for on-demand explanations</li>
       </ul>
-    </td></tr></table>
-<h3>CREATIVE WORKS</h3><table><tr><td class="year">Present<br>–<br>2026</td><td><strong><a href="https://atlanta-explorer.fly.dev/">Atlanta Explorer</a></strong><br>Used data from public property records to create an interactive model for estimating neighborhood specific population density and housing type in Atlanta. Midtown is nearly complete, other neighborhoods still under construction...</td></tr>
-<tr><td class="year">2025</td><td><strong>Structure Play</strong><br>Self-published and distributed a limited-run art book before medical school; sold copies through independent art stores.</td></tr></table>
-<h2>ADDITIONAL AREAS OF STUDY</h2>
-<table><tr><td class="year">Selected</td><td>Predictive genomics; retrieval-augmented generation and clinical AI; radiology education and spaced repetition; thermoregulation and glabrous-skin cooling; medical-device prototyping; clinical bioethics and consent; peptide/peptoid therapeutics and biomimetic materials; urban analytics and civic technology.</td></tr></table>
-</body></html>
+    </div>
+
+    <div id="creative-works" class="research-project-subtitle" data-project-subsection>CREATIVE WORKS</div>
+
+    <div class="research-year">Present<br>–<br>2026</div>
+    <div class="research-entry"><strong><a class="research-entry-link" href="https://atlanta-explorer.fly.dev/" target="_blank" rel="noopener noreferrer">Atlanta Explorer</a></strong><br>Used data from public property records to create an interactive model for estimating neighborhood specific population density and housing type in Atlanta. Midtown is nearly complete, other neighborhoods still under construction...</div>
+
+    <div class="research-year">2025</div>
+    <div class="research-entry"><strong>Structure Play</strong><br>Self-published and distributed a limited-run art book before medical school; sold copies through independent art stores.</div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div id="experience" class="research-section-title" data-cv-section>EXPERIENCE</div>
+  <div class="research-grid">
+    <div class="research-year">Present<br>–<br>2026</div>
+    <div class="research-entry"><strong>Stanford Biodesign Fellows Team</strong> <em>Medical Device Consultant</em>
+      <ul class="research-bullets">
+        <li>Consult for a Stanford Biodesign team developing accessible palmar cooling devices to alleviate multiple sclerosis-related tremor</li>
+        <li>Provide thermoregulation, product strategy, translational research, and technical landscape guidance while keeping phase-change material implementation details confidential</li>
+      </ul>
+    </div>
+
+    <div class="research-year">Present<br>–<br>2025</div>
+    <div class="research-entry"><strong>Emory University Department of Radiology and Imaging Sciences</strong> <em>AI Engineer; Medical Education Researcher</em>
+      <ul class="research-bullets">
+        <li>Independently building a retrieval-augmented generation (RAG) system with Dr. Brent Weinberg for neuroradiology education and workflow support; own architecture, corpus design, retrieval strategy, prompt/evaluation loop, and implementation</li>
+        <li>Medical education research: co-authored manuscript under review in <em>Current Problems in Diagnostic Radiology</em> evaluating an image-rich neuroradiology Anki deck for medical student education</li>
+      </ul>
+    </div>
+
+    <div class="research-year">2025<br>–<br>2024</div>
+    <div class="research-entry"><strong>Arteria Technology, Inc.</strong> <em>Chief Innovation Officer; Scientific Advisor</em>
+      <div>Invented a rapid body cooling system that increased human walking endurance &gt;40% above the natural limit and decreased the cost and size of rapid body cooling by an order of magnitude. This device surmounted the economic and manufacturing hurdles that previously hindered rapid body cooling's accessibility, and was acquired by Arteria Technology.</div>
+      <ul class="research-bullets">
+        <li>Led the company's research and development of novel rapid body cooling devices</li>
+      </ul>
+    </div>
+
+    <div class="research-year">2023</div>
+    <div class="research-entry"><strong>Maria X Martinez Street Medicine Clinic / Zuckerberg San Francisco General</strong> <em>Street Medicine Volunteer</em>
+      <ul class="research-bullets">
+        <li>First and only volunteer at San Francisco General Hospital's public clinic for the homeless in the Tenderloin</li>
+        <li>Triaged patients, took vitals, disinfected and bandaged wounds, administered EKGs, and connected patients experiencing abuse with social workers</li>
+      </ul>
+    </div>
+
+    <div class="research-year">2023</div>
+    <div class="research-entry"><strong>Santa Clara County Public Health Department</strong> <em>Harm Reduction Team Volunteer</em>
+      <ul class="research-bullets">
+        <li>Supported public health staff providing sanitation supplies, clean needles, STD exams, and other harm-reduction services in Gilroy, California</li>
+      </ul>
+    </div>
+
+    <div class="research-year">2024<br>–<br>2022</div>
+    <div class="research-entry"><strong>Stanford Synapse / Glial Buddies Peer Support Committee</strong> <em>Emotional/Peer Support Counselor</em>
+      <ul class="research-bullets">
+        <li>Organized opportunities for students to provide 1:1 emotional support and companionship to individuals coping with traumatic brain injury</li>
+      </ul>
+    </div>
+
+    <div class="research-year">2022</div>
+    <div class="research-entry"><strong>Emory University</strong> <em>Research Assistant</em>
+      <ul class="research-bullets">
+        <li>Researched emerging ethical dilemmas in medicine, developed proposed frameworks, and presented findings</li>
+        <li>Developed curriculum for practicing physicians on medical ethics and practical approaches to resolving clinical ethical dilemmas; presented at the Southern Hospital Medicine Conference in October 2022</li>
+      </ul>
+    </div>
+
+    <div class="research-year">2022</div>
+    <div class="research-entry"><strong>Emory Healthcare Ethics Committee</strong> <em>Student Observer</em>
+      <ul class="research-bullets">
+        <li>Observed the committee's monthly review of medical-ethics dilemmas and inpatient ethics consults, building practical familiarity with clinical ethics deliberation</li>
+      </ul>
+    </div>
+
+    <div class="research-year">2021</div>
+    <div class="research-entry"><strong>InnerMind NFT</strong> <em>Chief Financial Officer &amp; Lead DeFi Analyst</em>
+      <ul class="research-bullets">
+        <li>Created NFTs with generative AI; analyzed market trends to optimize release timing; generated 100k in revenue in two months</li>
+        <li>Recognition: <em>Oxford Business Review</em>, "The Digital Trading Card: The Rapid and Astounding Rise of NFTs"</li>
+      </ul>
+    </div>
+
+    <div class="research-year">2022<br>–<br>2019</div>
+    <div class="research-entry"><strong>Georgia Poison Center</strong> <em>Researcher</em>
+      <ul class="research-bullets">
+        <li>Identified pediatric poisoning risks from concentrated flavored nicotine bottles used in refillable e-cigarettes; designed and conducted trials and statistical analyses</li>
+        <li>First-authored publication and presented findings at the North American Congress of Clinical Toxicology</li>
+      </ul>
+    </div>
+
+    <div class="research-year">2018</div>
+    <div class="research-entry"><strong>Centers for Disease Control and Prevention</strong> <em>Research Technician</em>
+      <ul class="research-bullets">
+        <li>Conducted more than 200 validation trials evaluating ASTM standards used to assess pediatric medication safety</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- HONORS -->
+  <div id="honors" class="research-section-title" data-cv-section>HONORS &amp; AWARDS</div>
+  <div class="research-grid">
+    <div class="research-year">2026</div>
+    <div class="research-entry">1st Prize, IHI National Case Competition, Institute for Healthcare Improvement.</div>
+
+    <div class="research-year">2023</div>
+    <div class="research-entry">Stanford Major Grant, awarded for student-led full-time research on consent practices in intravenous ketamine therapy.</div>
+
+    <div class="research-year">2024<br>–<br>2021</div>
+    <div class="research-entry">Stanford Club Swim Team; 11x College Club Swimming Nationals Qualifier.</div>
+
+    <div class="research-year">2020<br>–<br>2016</div>
+    <div class="research-entry">Competitive Swimming: 3x Georgia State Champion; 2x High School All-American; USA Swimming Scholastic All-American.</div>
+  </div>
+
+  <!-- LEADERSHIP -->
+  <div id="leadership" class="research-section-title" data-cv-section>LEADERSHIP</div>
+  <div class="research-grid">
+    <div class="research-year">2024<br>–<br>2023</div>
+    <div class="research-entry"><strong>Stanford Administrative Panel for Human Subjects Research</strong><br>Voting member appointed to review research protocols and protect the rights and welfare of human research subjects.</div>
+
+    <div class="research-year">2024<br>–<br>2022</div>
+    <div class="research-entry"><strong>Stanford University Judicial Panel</strong><br>Voting member appointed to adjudicate potential violations of the Stanford Honor Code and Fundamental Standard.</div>
+  </div>
+
+  <!-- ADDITIONAL AREAS OF STUDY -->
+  <div id="additional-areas" class="research-section-title" data-cv-section>ADDITIONAL AREAS OF STUDY</div>
+  <div class="research-grid">
+    <div class="research-year">Medical</div>
+    <div class="research-entry">Predictive genomics; retrieval-augmented generation and clinical AI; radiology education and spaced repetition; clinical bioethics and consent.</div>
+
+    <div class="research-year">Engineering</div>
+    <div class="research-entry">Thermoregulation and glabrous-skin cooling; medical-device prototyping.</div>
+
+    <div class="research-year">Biomolecular</div>
+    <div class="research-entry">Peptide/peptoid therapeutics and biomimetic materials.</div>
+
+    <div class="research-year">Civic</div>
+    <div class="research-entry">Urban analytics and civic technology.</div>
+  </div>
+
+  <script>
+    (() => {
+      const sections = [...document.querySelectorAll("[data-cv-section]")];
+      const projectSubsections = [...document.querySelectorAll("[data-project-subsection]")];
+      const sectionLinks = [...document.querySelectorAll(".cv-section-link")];
+      const projectLinks = [...document.querySelectorAll(".cv-project-subnav-link")];
+      const nav = document.querySelector(".cv-section-nav");
+      const indicator = document.querySelector(".cv-section-indicator");
+      const selectedProjects = document.querySelector("#selected-projects");
+      const additionalAreas = document.querySelector("#additional-areas");
+
+      function currentFrom(items, anchorRatio = 0.28) {
+        const anchor = window.scrollY + window.innerHeight * anchorRatio;
+        return items.reduce((current, item) => {
+          return item.offsetTop <= anchor ? item : current;
+        }, items[0]);
+      }
+
+      function setSectionActive(section) {
+        if (!section || !indicator) return;
+        const active = sectionLinks.find((link) => link.getAttribute("href") === `#${section.id}`);
+        if (!active) return;
+        sectionLinks.forEach((link) => link.classList.toggle("active", link === active));
+        setIndicator(active);
+      }
+
+      function setIndicator(active) {
+        if (!active || !indicator) return;
+        indicator.style.height = `${active.offsetHeight}px`;
+        indicator.style.transform = `translateY(${active.offsetTop}px)`;
+      }
+
+      function setProjectActive(project) {
+        let activeProject = null;
+        projectLinks.forEach((link) => {
+          const isActive = Boolean(project) && link.getAttribute("href") === `#${project.id}`;
+          link.classList.toggle("active", isActive);
+          if (isActive) activeProject = link;
+        });
+        return activeProject;
+      }
+
+      function updateNav() {
+        const inProjects = selectedProjects && additionalAreas &&
+          selectedProjects.getBoundingClientRect().top <= window.innerHeight * 0.65 &&
+          additionalAreas.getBoundingClientRect().top > window.innerHeight * 0.25;
+
+        const section = inProjects ? selectedProjects : currentFrom(sections);
+        setSectionActive(section);
+        nav?.classList.toggle("projects-open", Boolean(inProjects));
+
+        if (inProjects) {
+          const activeProject = setProjectActive(currentFrom(projectSubsections, 0.65));
+          if (activeProject) setIndicator(activeProject);
+        } else {
+          setProjectActive(null);
+        }
+      }
+
+      updateNav();
+      window.addEventListener("scroll", updateNav, { passive: true });
+      window.addEventListener("resize", updateNav);
+      [...sectionLinks, ...projectLinks].forEach((link) => link.addEventListener("click", () => {
+        requestAnimationFrame(updateNav);
+      }));
+    })();
+  </script>
+
+</body>
+</html>

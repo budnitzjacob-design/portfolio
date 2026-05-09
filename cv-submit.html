@@ -2,16 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Curriculum Vitae — Jacob Budnitz</title>
+  <title>Curriculum Vitae - Jacob Budnitz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+/* ============================================
+   JACOB BUDNITZ — PORTFOLIO
+   Transposed from Webflow, made responsive
+   ============================================ */
+
+/* Custom inverting cursor — see cursor.js.
+   The .cursor-hidden class is only added by the script, which itself
+   only runs on (hover: hover) and (pointer: fine), so we don't need
+   to gate this rule on a media query — the script is the gate.
+   On touch / mobile the script never adds the class, no cursor is
+   suppressed, and the native (no-cursor) behavior applies. */
+html.cursor-hidden,
+html.cursor-hidden body,
+html.cursor-hidden *,
+html.cursor-hidden *::before,
+html.cursor-hidden *::after { cursor: none !important; }
+
+/* --- Font Faces --- */
 @font-face {
   font-family: 'Bauhaus';
   src: url('https://jacobbudnitz.com/fonts/BauhausRegular.woff2') format('woff2'),
-       url('https://jacobbudnitz.com/fonts/BauhausRegular.ttf') format('truetype');
+       url('https://jacobbudnitz.com/fonts/BauhausRegular.ttf')   format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -19,20 +37,87 @@
 @font-face {
   font-family: 'Bauhaus';
   src: url('https://jacobbudnitz.com/fonts/BauhausBold.woff2') format('woff2'),
-       url('https://jacobbudnitz.com/fonts/BauhausBold.ttf') format('truetype');
+       url('https://jacobbudnitz.com/fonts/BauhausBold.ttf')   format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-body { margin: 0; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
+@font-face {
+  font-family: 'Bauhaus';
+  src: url('https://jacobbudnitz.com/fonts/BauhausItalic.woff2') format('woff2'),
+       url('https://jacobbudnitz.com/fonts/BauhausItalic.ttf')   format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bauhaus';
+  src: url('https://jacobbudnitz.com/fonts/BauhausBoldItalic.woff2') format('woff2'),
+       url('https://jacobbudnitz.com/fonts/BauhausBoldItalic.ttf')   format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Conthrax';
+  src: url('https://jacobbudnitz.com/fonts/conthrax-sb.woff2') format('woff2'),
+       url('https://jacobbudnitz.com/fonts/conthrax-sb.ttf')   format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrainsMono';
+  src: url('https://jacobbudnitz.com/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
+       url('https://jacobbudnitz.com/fonts/JetBrainsMono-Regular.ttf')   format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GoodTimes';
+  src: url('https://jacobbudnitz.com/fonts/good-times-rg.woff2') format('woff2'),
+       url('https://jacobbudnitz.com/fonts/good-times-rg.otf')   format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- Shared: Back nav link --- */
 .back-nav {
   position: fixed;
   top: 20px;
   left: 24px;
   z-index: 100;
+  color: #ffd900;
   font-family: 'Bauhaus', serif;
   font-weight: 700;
   font-size: 18px;
@@ -41,13 +126,345 @@ a { color: inherit; text-decoration: none; }
   opacity: 0.85;
   transition: opacity 0.2s;
 }
-.back-nav:hover { opacity: 1; }
-.back-nav.dark { color: #000; }
+.back-nav:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   INDEX PAGE
+   ============================================ */
+.index-body {
+  background-color: #000;
+  min-height: 100vh;
+}
+
+.index-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.index-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Mobile-only override: tighten the column 25% (per design ticket) */
+@media (max-width: 768px) {
+  .index-nav { gap: 3px; }
+}
+
+.index-name {
+  color: #ffd900;
+  font-family: 'Bauhaus', serif;
+  font-weight: 700;
+  font-size: 100px;
+  letter-spacing: 10px;
+  margin-bottom: 40px;
+  text-align: center;
+  line-height: 1.05;
+}
+
+.index-link {
+  color: #ffd900;
+  font-family: 'Bauhaus', serif;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 20px;
+  text-decoration: none;
+  margin: 2px 0;
+  transition: opacity 0.2s;
+  text-align: center;
+}
+.index-link:hover {
+  opacity: 0.7;
+}
+
+.index-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+.index-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Index responsive — width breakpoints */
+@media (max-width: 1200px) {
+  .index-name { font-size: 72px; letter-spacing: 6px; }
+  .index-link { font-size: 32px; letter-spacing: 14px; }
+}
+@media (max-width: 768px) {
+  .index-name { font-size: 42px; letter-spacing: 4px; margin-bottom: 28px; }
+  .index-link { font-size: 16.5px; letter-spacing: 6px; margin: 1px 0; }
+}
+@media (max-width: 480px) {
+  .index-name { font-size: 28px; letter-spacing: 3px; margin-bottom: 20px; }
+  .index-link { font-size: 12px; letter-spacing: 4px; margin: 1px 0; }
+  .index-container { padding: 20px; }
+}
+
+/* Index responsive — height breakpoints (keeps nav + balls both visible) */
+@media (max-height: 820px) {
+  .index-name { font-size: 72px; letter-spacing: 6px; margin-bottom: 24px; }
+  .index-link { font-size: 32px; letter-spacing: 14px; }
+  .index-nav  { gap: 2px; }
+}
+@media (max-height: 680px) {
+  .index-name { font-size: 52px; letter-spacing: 4px; margin-bottom: 16px; }
+  .index-link { font-size: 24px; letter-spacing: 10px; }
+  .index-nav  { gap: 0; }
+}
+@media (max-height: 540px) {
+  .index-name { font-size: 36px; letter-spacing: 3px; margin-bottom: 10px; }
+  .index-link { font-size: 13.5px; letter-spacing: 4px; margin: 1px 0; }
+}
+
+
+/* ============================================
+   THERMOROID PAGE
+   ============================================ */
+.thermoroid-body {
+  background-color: #000;
+  color: #fff;
+}
+
+.thermo-hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+.thermo-hero-title {
+  font-family: 'Conthrax', sans-serif;
+  font-size: 125px;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease;
+}
+.thermo-hero-img {
+  max-width: 475px;
+  margin: 0 auto 40px;
+  animation: fadeIn 1.2s ease;
+}
+.thermo-hero-subtitle {
+  font-family: 'Conthrax', sans-serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+  animation: fadeIn 1.4s ease;
+}
+.thermo-hero-meta {
+  font-family: 'Conthrax', sans-serif;
+  font-size: 20px;
+  margin-bottom: 60px;
+  animation: fadeIn 1.6s ease;
+}
+
+.thermo-intro {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  align-items: start;
+}
+.thermo-intro-render {
+  max-width: 375px;
+  margin: 0 auto;
+}
+.thermo-intro-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: justify;
+}
+.thermo-intro-text a {
+  color: #008cff;
+}
+.thermo-intro-caption {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 14px;
+  margin-top: 20px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* Section headers */
+.thermo-section-header {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 100px;
+  line-height: 1;
+  text-align: center;
+  margin: 60px 0 40px;
+}
+.thermo-section-header.small {
+  font-size: 40px;
+  margin: 40px 0 20px;
+}
+
+/* Specifications (placeholder) */
+.thermo-specs {
+  text-align: center;
+  padding: 0 40px 40px;
+}
+
+/* Story section */
+.thermo-story {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px 60px;
+}
+.thermo-story-header {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.thermo-story-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: justify;
+}
+.thermo-story-text a {
+  color: #008cff;
+}
+
+/* Prototypes */
+.thermo-prototypes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  padding: 0 40px;
+}
+.thermo-prototypes img {
+  width: 100%;
+  object-fit: cover;
+}
+.thermo-proto-caption {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Study sections */
+.thermo-study {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.thermo-study-title {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 40px;
+  text-align: center;
+  margin: 40px 0 20px;
+}
+.thermo-study-title.large {
+  font-size: 100px;
+  margin: 60px 0 30px;
+}
+.thermo-study-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 40px;
+}
+
+/* Findings */
+.thermo-findings-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 40px;
+  text-align: center;
+  margin: 40px 0 20px;
+}
+.thermo-findings-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 40px;
+}
+
+/* Charts */
+.thermo-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 40px;
+}
+.thermo-charts img {
+  width: 100%;
+}
+
+/* Conclusions */
+.thermo-conclusions {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px 120px;
+}
+.thermo-conclusions-title {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 40px;
+  margin: 40px 0 20px;
+}
+.thermo-conclusions-text {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Thermoroid responsive */
+@media (max-width: 1200px) {
+  .thermo-hero-title { font-size: 80px; }
+  .thermo-section-header { font-size: 60px; }
+}
+@media (max-width: 768px) {
+  .thermo-hero-title { font-size: 48px; }
+  .thermo-hero { padding: 60px 16px 30px; }
+  .thermo-intro { grid-template-columns: 1fr; padding: 20px 16px 40px; }
+  .thermo-intro-render { max-width: 280px; }
+  .thermo-section-header { font-size: 40px; }
+  .thermo-study-title.large { font-size: 40px; }
+  .thermo-prototypes { grid-template-columns: 1fr; padding: 0 16px; }
+  .thermo-charts { grid-template-columns: 1fr; padding: 0 16px; }
+  .thermo-study, .thermo-story, .thermo-conclusions { padding-left: 16px; padding-right: 16px; }
+  .thermo-intro-text { font-size: 14px; }
+  .thermo-study-text, .thermo-findings-text, .thermo-conclusions-text, .thermo-story-text { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  .thermo-hero-title { font-size: 32px; }
+  .thermo-hero-subtitle { font-size: 14px; }
+  .thermo-hero-meta { font-size: 14px; }
+  .thermo-section-header { font-size: 28px; }
+  .thermo-section-header.small { font-size: 24px; }
+  .thermo-study-title { font-size: 24px; }
+  .thermo-findings-title { font-size: 24px; }
+}
+
+
+/* ============================================
+   RESEARCH / CV PAGE
+   ============================================ */
 .research-body {
   background-color: #e2e4d2;
   color: #000;
-  padding-bottom: 80px;
+  padding-bottom: 420px;
 }
+
 .research-section-title {
   font-family: 'Times New Roman', serif;
   font-size: 40px;
@@ -76,23 +493,44 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   padding-top: 2px;
 }
-.research-year a { color: inherit; text-decoration: none; }
+.research-year a {
+  color: inherit;
+  text-decoration: none;
+}
 .research-entry {
   font-family: 'Times New Roman', serif;
   font-size: 20px;
   line-height: 1.5;
   margin-bottom: 12px;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
-.research-entry em { font-style: italic; }
-.research-entry strong { font-weight: 700; }
-.research-bullets { margin: 4px 0 0 1.1em; padding: 0; }
-.research-bullets li { margin: 0 0 2px; padding-left: 0.12em; }
-.research-bullets li::marker { color: #000; font-size: 0.72em; }
+.research-entry em {
+  font-style: italic;
+}
+.research-entry strong {
+  font-weight: 700;
+}
+.research-bullets {
+  margin: 4px 0 0 1.1em;
+  padding: 0;
+}
+.research-bullets li {
+  margin: 0 0 2px;
+  padding-left: 0.12em;
+}
+.research-bullets li::marker {
+  color: #000;
+  font-size: 0.72em;
+}
 .research-entry-link {
   border-bottom: 1px solid rgba(0, 0, 0, 0.38);
   transition: border-color 0.18s, opacity 0.18s;
 }
-.research-entry-link:hover { border-color: #000; opacity: 0.72; }
+.research-entry-link:hover {
+  border-color: #000;
+  opacity: 0.72;
+}
 .research-project-subtitle {
   grid-column: 1 / -1;
   font-family: 'Times New Roman', serif;
@@ -124,14 +562,19 @@ a { color: inherit; text-decoration: none; }
   text-align: left;
   transition: color 0.18s;
 }
-.cv-section-link:hover, .cv-section-link.active { color: #000; }
+.cv-section-link:hover,
+.cv-section-link.active {
+  color: #000;
+}
 .cv-project-subnav {
   display: none;
   flex-direction: column;
   gap: 8px;
   margin: -3px 0 2px 10px;
 }
-.cv-section-nav.projects-open .cv-project-subnav { display: flex; }
+.cv-section-nav.projects-open .cv-project-subnav {
+  display: flex;
+}
 .cv-project-subnav-link {
   color: #5d5d5d;
   font-size: 10px;
@@ -140,7 +583,10 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.05em;
   transition: color 0.18s;
 }
-.cv-project-subnav-link:hover, .cv-project-subnav-link.active { color: #000; }
+.cv-project-subnav-link:hover,
+.cv-project-subnav-link.active {
+  color: #000;
+}
 .cv-section-indicator {
   position: absolute;
   left: 0;
@@ -151,30 +597,687 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(0);
   transition: transform 0.22s ease, height 0.22s ease;
 }
-@media (max-width: 1260px) { .cv-section-nav { display: none; } }
+
+.back-nav.dark {
+  color: #000;
+}
+
+/* Research responsive */
+@media (max-width: 1260px) {
+  .cv-section-nav { display: none; }
+}
 @media (max-width: 768px) {
-  .back-nav { position: static; display: inline-block; margin: 18px 0 0 18px; }
-  .research-grid { grid-template-columns: 70px 1fr; padding: 0 16px; gap: 8px 16px; }
-  .research-entry { font-size: 16px; }
-  .research-year { font-size: 16px; }
-  .research-section-title { font-size: 28px; }
-  .research-project-subtitle { font-size: 28px; }
+  .back-nav.dark {
+    position: static;
+    display: inline-block;
+    margin: 18px 0 0 18px;
+  }
+  .research-body { padding-bottom: 72px; }
+  .research-grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    max-width: 38rem;
+    padding: 0 24px;
+  }
+  .research-entry {
+    font-size: 17px;
+    line-height: 1.46;
+    margin-bottom: 18px;
+  }
+  .research-year {
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
+    font-weight: 700;
+    opacity: 0.74;
+    padding-top: 0;
+    margin-top: 8px;
+  }
+  .research-section-title,
+  .research-project-subtitle {
+    font-size: 30px;
+    line-height: 1.1;
+    margin: 48px auto 24px;
+    width: calc(100% - 48px);
+    max-width: 38rem;
+    overflow-wrap: anywhere;
+  }
+  .research-bullets { margin-top: 6px; margin-left: 1.25em; }
+  .research-bullets li { margin-bottom: 5px; }
 }
 @media (max-width: 480px) {
-  .research-grid { grid-template-columns: 1fr; }
-  .research-year { text-align: left; font-weight: 700; margin-top: 16px; }
-  .research-section-title { font-size: 24px; }
-  .research-project-subtitle { font-size: 24px; }
+  .research-grid {
+    padding: 0 20px;
+    max-width: 100%;
+  }
+  .research-entry { font-size: 16.5px; }
+  .research-section-title,
+  .research-project-subtitle {
+    font-size: 25px;
+    margin: 42px auto 22px;
+    width: calc(100% - 40px);
+    max-width: none;
+  }
 }
-@media print {
-  .back-nav, .cv-section-nav { display: none !important; }
-  .research-body { background: #fff; padding-bottom: 0; }
-  .research-section-title, .research-project-subtitle { break-after: avoid; }
-  .research-grid { max-width: none; padding: 0; }
-  .research-entry, .research-year { font-size: 12pt; }
-  .research-section-title, .research-project-subtitle { font-size: 22pt; }
+
+
+/* ============================================
+   PATENTS PAGE
+   ============================================ */
+.patents-body {
+  background-color: #010101;
+  background-image: url('https://jacobbudnitz.com/images/IMG_8075.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #fff;
+  text-shadow: 0 1px 1px #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 40px;
 }
-</style>
+
+.patent-block {
+  max-width: 700px;
+  margin: 0 0 60px;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 700;
+}
+.patent-block.right {
+  align-self: flex-start;
+  margin-left: 20px;
+  text-align: right;
+}
+.patent-block.left {
+  align-self: flex-end;
+  text-align: left;
+  margin-right: 20px;
+}
+.patent-block.center {
+  align-self: center;
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+  background-color: #000;
+  padding: 4px 8px;
+  text-shadow: 0 1px 20px #000;
+}
+
+.back-nav.patents {
+  color: #ffd900;
+}
+
+/* Patents responsive */
+@media (max-width: 768px) {
+  .patents-body { padding: 60px 16px; }
+  .patent-block { font-size: 20px; line-height: 24px; }
+  .patent-block.center { font-size: 20px; line-height: 24px; }
+}
+@media (max-width: 480px) {
+  .patent-block { font-size: 16px; line-height: 20px; }
+  .patent-block.center { font-size: 16px; line-height: 20px; }
+  .patent-block.right, .patent-block.left { text-align: left; align-self: flex-start; }
+}
+
+
+/* ============================================
+   ARTWORKS PAGE
+   ============================================ */
+.artworks-body {
+  background-color: #0000AA;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lucida Console', 'Lucida Sans Typewriter', Monaco, 'Courier New', monospace;
+}
+
+.artworks-body .back-nav { color: #fff; }
+
+.artworks-title {
+  font-family: 'Lucida Console', 'Lucida Sans Typewriter', Monaco, 'Courier New', monospace;
+  font-size: 64px;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+.artworks-subtitle {
+  font-family: 'Lucida Console', 'Lucida Sans Typewriter', Monaco, 'Courier New', monospace;
+  font-size: 16px;
+  opacity: 1;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .artworks-title { font-size: 40px; }
+}
+@media (max-width: 480px) {
+  .artworks-title { font-size: 28px; }
+}
+
+
+/* ============================================
+   BIOGRAPHY PAGE
+   ============================================ */
+.biography-body {
+  background-image: url('https://jacobbudnitz.com/images/bliss.webp');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 40px;
+}
+
+.biography-card {
+  color: #fff;
+  text-align: center;
+  font-family: 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.8;
+  text-shadow: 2px 11px 16px #000;
+  max-width: 700px;
+}
+.biography-card .contact-label {
+  margin-top: 80px;
+  font-size: 18px;
+}
+.biography-card a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.back-nav.bio {
+  color: #fff;
+  text-shadow: 0 1px 4px #000;
+}
+
+@media (max-width: 768px) {
+  .biography-body { padding: 60px 16px; }
+  .biography-card { font-size: 16px; }
+}
+
+
+/* ============================================
+   BIOCOOLER PAGE — exact match to biocooler.carrd.co
+   ============================================ */
+
+/* Base font matches carrd's html { font-size: 18pt } */
+.biocooler-body {
+  background-color: #F2F2EB;
+  color: #000000;
+  font-size: 18pt;
+  line-height: 1;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
+/* ← HOME back nav: black text on beige */
+.bc-back-nav {
+  color: #000000 !important;
+}
+.bc-back-nav:hover {
+  opacity: 0.6;
+}
+
+/* Outer wrapper: carrd's .site-wrapper */
+.bc-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  overflow: hidden;
+}
+
+/* Inner column: carrd's .site-main > .inner
+   --width: 40rem, --padding-horizontal: 3rem, --padding-vertical: 3rem */
+.bc-inner {
+  width: 40rem;
+  max-width: 100%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* All direct children: --spacing: 0.75rem top and bottom margin */
+.bc-inner > * {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.bc-inner > *:first-child { margin-top: 0; }
+.bc-inner > *:last-child  { margin-bottom: 0; }
+
+/* Title — instance-1: 2em, bold, centered */
+.bc-title {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  color: #000000;
+}
+
+/* ABSTRACT heading — instance-2: 1.25em, centered */
+.bc-abstract-heading {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  color: #000000;
+}
+.bc-abstract-heading strong {
+  font-weight: 700;
+  color: inherit;
+}
+
+/* Body text — instance-3/8/11/10/9/15/17: 0.75em, justified */
+.bc-body {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: justify;
+  color: #000000;
+}
+.bc-body a {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Multi-paragraph blocks: span.bc-p = carrd's span.p (display block) */
+.bc-body .bc-p {
+  display: block;
+}
+.bc-body .bc-p + .bc-p {
+  margin-top: 1rem;
+}
+
+/* Images — full column width */
+.bc-image {
+  display: block;
+  line-height: 0;
+  width: 100%;
+}
+.bc-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: top;
+}
+
+/* Captions — instance-4/20/18/5/19/21: 0.75em, centered */
+.bc-caption {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  color: #000000;
+}
+
+/* MANUSCRIPT heading — instance-6: 1.375em, semibold, centered */
+.bc-manuscript-heading {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 1.375em;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  color: #000000;
+}
+
+/* Sub-section headings — instance-7/12/13/14/16: 1em, semibold, centered */
+.bc-subheading {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  color: #000000;
+}
+
+/* Responsive */
+@media (max-width: 736px) {
+  .biocooler-body { font-size: 14pt; }
+  .bc-inner { padding: 2rem 1.5rem; }
+  .bc-wrapper { padding: 0 1rem 1rem; }
+}
+@media (max-width: 480px) {
+  .biocooler-body { font-size: 11pt; }
+  .bc-inner { padding: 1.5rem 1rem; }
+}
+
+
+/* ============================================
+   XP DIALOG — landing easter egg
+   --------------------------------------------
+   Style guide (Windows XP "Luna Blue" — cream chassis,
+   traffic-light caption buttons, pixel-font body).
+
+   COLOR TOKENS
+     Title bar (Luna gradient, top → bottom):
+       #0058E0 0% / #3F8CF3 8% / #245EDC 40% /
+       #1F58D5 88% / #0A246A 100%
+     --xp-titlebar-text : #FFFFFF
+     --xp-window-bg     : #FBF6E4   (cream)
+     --xp-window-border : #002B7F
+     --xp-window-hilite : #FFFCEF
+     --xp-button-top    : #FFFFFF
+     --xp-button-bot    : #E4DEC4
+     --xp-button-border : #6E6A5F
+     --xp-text          : #000000
+     --xp-shadow        : 0 8px 28px rgba(0,0,0,0.45)
+     Caption buttons (mac-style traffic lights, XP-shaped):
+       close (X)  : red    #E04545 → #B71B1B
+       max  (□)   : yellow #FFD23F → #C99300
+       min  (_)   : green  #4CD964 → #1E8A2C
+   TYPOGRAPHY
+     family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif
+     title : 11px / 700 / 1px text-shadow rgba(0,0,0,0.5)
+     body  : 11px / 1.45 / 400
+     sub   : 10px / 1.4 / italic
+     button: 11px / 400  / text-align:center
+   GEOMETRY
+     window 320px wide, top corners rounded 8px, bottom flat.
+     title bar: 26px tall, padding 0 4px 0 8px.
+     caption buttons: 20x18 rounded squares (radius 3px), gap 4px.
+     body padding: 14px 16px.
+     button row: padding 0 12px 14px, gap 6px, flex-end.
+     button: min-width 100px, padding 4px 12px, border-radius 3px.
+   ANIMATION
+     wiggle  — rotate(-4deg)→rotate(4deg), 0.12s infinite alternate
+     marquee — translateX(100%)→translateX(-100%), 6s linear infinite
+     balloon — scale(1)→scale(10)→scale(1), 4s ease-in-out, 1 cycle
+     flash   — opacity 1→0.15→1, 0.18s infinite alternate
+     bold    — font-weight: 900 applied while cooking
+   ============================================ */
+.xp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.28);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.xp-overlay.is-open {
+  display: flex;
+  animation: xp-overlay-fade 120ms ease-out;
+}
+@keyframes xp-overlay-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.xp-window {
+  width: 320px;
+  max-width: calc(100vw - 24px);
+  background: #FBF6E4;
+  color: #000;
+  border: 1px solid #002B7F;
+  border-radius: 8px 8px 0 0;
+  box-shadow:
+    inset 0 0 0 1px #FFFCEF,
+    0 8px 28px rgba(0, 0, 0, 0.45);
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: inherit;
+}
+
+.xp-titlebar {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px 0 8px;
+  border-radius: 7px 7px 0 0;
+  background:
+    linear-gradient(
+      to bottom,
+      #0058E0 0%,
+      #3F8CF3 8%,
+      #245EDC 40%,
+      #1F58D5 88%,
+      #0A246A 100%
+    );
+  border-bottom: 1px solid #002B7F;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.55);
+  letter-spacing: 0.2px;
+  font-family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
+}
+.xp-title {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.xp-caption-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.xp-cap {
+  width: 20px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.55);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.65);
+  font: 700 10px/1 "Marlett", Tahoma, "Trebuchet MS", sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  padding: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+/* Minimize — green */
+.xp-cap--min {
+  background:
+    linear-gradient(to bottom, #8FE49E 0%, #4CD964 45%, #2BA13E 100%),
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 60%);
+  background-blend-mode: screen, normal;
+}
+/* Maximize — yellow */
+.xp-cap--max {
+  background:
+    linear-gradient(to bottom, #FFE079 0%, #FFD23F 45%, #D29A00 100%),
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 60%);
+  background-blend-mode: screen, normal;
+}
+/* Close — red */
+.xp-cap--close {
+  background:
+    linear-gradient(to bottom, #F38280 0%, #E04545 45%, #B71B1B 100%),
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 60%);
+  background-blend-mode: screen, normal;
+  color: #FFFFFF;
+  cursor: pointer;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+.xp-cap--close:hover {
+  filter: brightness(1.08);
+}
+.xp-cap:active {
+  filter: brightness(0.92);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.xp-body {
+  padding: 16px 16px 4px;
+  color: #000;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-family: Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
+}
+.xp-icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #6FB2FF 0%, #2A6BD6 55%, #0A2F8A 100%);
+  border: 1px solid #002B7F;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 22px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.45);
+}
+.xp-message {
+  flex: 1 1 auto;
+}
+.xp-message-main {
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: 400;
+  margin: 0 0 12px;
+  display: inline-block;
+  transform-origin: left center;
+}
+.xp-message-sub {
+  font-size: 10px;
+  line-height: 1.4;
+  color: #3a3a3a;
+  margin: 0;
+  font-style: italic;
+}
+
+.xp-buttons {
+  padding: 12px 12px 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.xp-btn {
+  min-width: 100px;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid #6E6A5F;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #FBF6E4 50%, #E4DEC4 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06);
+  font: 11px/1 Tahoma, "Trebuchet MS", "MS Sans Serif", Verdana, sans-serif;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.xp-btn:hover {
+  border-color: #002B7F;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #FFFCEF 50%, #ECE5C4 100%);
+}
+.xp-btn:active {
+  background: linear-gradient(to bottom, #E4DEC4 0%, #FBF6E4 50%, #FFFFFF 100%);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+}
+.xp-btn--default {
+  border-color: #002B7F;
+  outline: 1px dotted #002B7F;
+  outline-offset: -4px;
+}
+
+/* span wrapper inside each button — the thing that animates */
+.xp-btn .xp-btn-text {
+  display: inline-block;
+  white-space: nowrap;
+  transform-origin: center center;
+}
+
+/* easter-egg state, applied to .xp-window after 10s further idle */
+.xp-window.is-cooking .xp-message-main {
+  font-weight: 900;
+  animation:
+    xp-balloon 4000ms ease-in-out 1,
+    xp-flash    180ms steps(2, end) infinite alternate;
+  transform-origin: left center;
+}
+.xp-window.is-cooking .xp-btn--default .xp-btn-text {
+  animation: xp-wiggle 120ms ease-in-out infinite alternate;
+}
+.xp-window.is-cooking .xp-btn--scroll .xp-btn-text {
+  animation: xp-marquee 6s linear infinite;
+}
+
+@keyframes xp-wiggle {
+  from { transform: rotate(-4deg) translateY(-1px); }
+  to   { transform: rotate(4deg)  translateY(1px); }
+}
+@keyframes xp-marquee {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(-100%); }
+}
+@keyframes xp-balloon {
+  0%   { transform: scale(1);  }
+  50%  { transform: scale(10); }
+  100% { transform: scale(1);  }
+}
+@keyframes xp-flash {
+  from { opacity: 1;    }
+  to   { opacity: 0.15; }
+}
+
+/* respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .xp-window.is-cooking .xp-message-main,
+  .xp-window.is-cooking .xp-btn--default .xp-btn-text,
+  .xp-window.is-cooking .xp-btn--scroll  .xp-btn-text {
+    animation: none;
+  }
+}
+
+/* small phones — keep dialog readable */
+@media (max-width: 360px) {
+  .xp-window { width: calc(100vw - 24px); }
+  .xp-buttons { justify-content: center; }
+  .xp-btn { min-width: 0; flex: 1 1 auto; }
+}
+
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+sup {
+  font-size: 0.65em;
+  vertical-align: super;
+}
+
+  </style>
 </head>
 <body class="research-body">
 <a href="https://jacobbudnitz.com/" class="back-nav dark">← HOME</a>
@@ -500,7 +1603,7 @@ a { color: inherit; text-decoration: none; }
       const nav = document.querySelector(".cv-section-nav");
       const indicator = document.querySelector(".cv-section-indicator");
       const selectedProjects = document.querySelector("#selected-projects");
-      const additionalAreas = document.querySelector("#additional-areas");
+      const experience = document.querySelector("#experience");
 
       function currentFrom(items, anchorRatio = 0.28) {
         const anchor = window.scrollY + window.innerHeight * anchorRatio;
@@ -534,9 +1637,9 @@ a { color: inherit; text-decoration: none; }
       }
 
       function updateNav() {
-        const inProjects = selectedProjects && additionalAreas &&
+        const inProjects = selectedProjects && experience &&
           selectedProjects.getBoundingClientRect().top <= window.innerHeight * 0.65 &&
-          additionalAreas.getBoundingClientRect().top > window.innerHeight * 0.25;
+          experience.getBoundingClientRect().top > window.innerHeight * 0.25;
 
         const section = inProjects ? selectedProjects : currentFrom(sections);
         setSectionActive(section);

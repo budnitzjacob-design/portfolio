@@ -452,7 +452,7 @@ a {
 .research-body {
   background-color: #e2e4d2;
   color: #000;
-  padding-bottom: 80px;
+  padding-bottom: 420px;
 }
 
 .research-section-title {
@@ -492,6 +492,8 @@ a {
   font-size: 20px;
   line-height: 1.5;
   margin-bottom: 12px;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 .research-entry em {
   font-style: italic;
@@ -595,17 +597,57 @@ a {
   .cv-section-nav { display: none; }
 }
 @media (max-width: 768px) {
-  .research-grid { grid-template-columns: 70px 1fr; padding: 0 16px; gap: 8px 16px; }
-  .research-entry { font-size: 16px; }
-  .research-year { font-size: 16px; }
-  .research-section-title { font-size: 28px; }
-  .research-project-subtitle { font-size: 28px; }
+  .back-nav.dark {
+    position: static;
+    display: inline-block;
+    margin: 18px 0 0 18px;
+  }
+  .research-body { padding-bottom: 72px; }
+  .research-grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    max-width: 38rem;
+    padding: 0 24px;
+  }
+  .research-entry {
+    font-size: 17px;
+    line-height: 1.46;
+    margin-bottom: 18px;
+  }
+  .research-year {
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
+    font-weight: 700;
+    opacity: 0.74;
+    padding-top: 0;
+    margin-top: 8px;
+  }
+  .research-section-title,
+  .research-project-subtitle {
+    font-size: 30px;
+    line-height: 1.1;
+    margin: 48px auto 24px;
+    width: calc(100% - 48px);
+    max-width: 38rem;
+    overflow-wrap: anywhere;
+  }
+  .research-bullets { margin-top: 6px; margin-left: 1.25em; }
+  .research-bullets li { margin-bottom: 5px; }
 }
 @media (max-width: 480px) {
-  .research-grid { grid-template-columns: 1fr; }
-  .research-year { text-align: left; font-weight: 700; margin-top: 16px; }
-  .research-section-title { font-size: 24px; }
-  .research-project-subtitle { font-size: 24px; }
+  .research-grid {
+    padding: 0 20px;
+    max-width: 100%;
+  }
+  .research-entry { font-size: 16.5px; }
+  .research-section-title,
+  .research-project-subtitle {
+    font-size: 25px;
+    margin: 42px auto 22px;
+    width: calc(100% - 40px);
+    max-width: none;
+  }
 }
 
 

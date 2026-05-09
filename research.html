@@ -336,7 +336,7 @@
       const nav = document.querySelector(".cv-section-nav");
       const indicator = document.querySelector(".cv-section-indicator");
       const selectedProjects = document.querySelector("#selected-projects");
-      const additionalAreas = document.querySelector("#additional-areas");
+      const experience = document.querySelector("#experience");
 
       function currentFrom(items, anchorRatio = 0.28) {
         const anchor = window.scrollY + window.innerHeight * anchorRatio;
@@ -370,9 +370,9 @@
       }
 
       function updateNav() {
-        const inProjects = selectedProjects && additionalAreas &&
+        const inProjects = selectedProjects && experience &&
           selectedProjects.getBoundingClientRect().top <= window.innerHeight * 0.65 &&
-          additionalAreas.getBoundingClientRect().top > window.innerHeight * 0.25;
+          experience.getBoundingClientRect().top > window.innerHeight * 0.25;
 
         const section = inProjects ? selectedProjects : currentFrom(sections);
         setSectionActive(section);

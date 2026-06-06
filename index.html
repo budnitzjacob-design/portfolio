@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Jacob Budnitz</title>
+  <title>Jacob Budnitz — Clinical AI, Biomedical Invention, and Software</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jacob Budnitz is a medical student, inventor, and software builder working on clinical AI, biomedical devices, cold-chain systems, and creative technical projects.">
+  <link rel="canonical" href="https://jacobbudnitz.com/">
   <meta property="og:title" content="Jacob Budnitz">
+  <meta property="og:description" content="Medical student, inventor, and software builder working on clinical AI, biomedical devices, and creative technical projects.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jacobbudnitz.com/">
   <meta property="og:image" content="https://jacobbudnitz.com/images/webclip.png?v=20260606">
@@ -15,17 +18,39 @@
   <meta property="og:image:alt" content="Smiley face icon">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Jacob Budnitz">
+  <meta name="twitter:description" content="Medical student, inventor, and software builder working on clinical AI, biomedical devices, and creative technical projects.">
   <meta name="twitter:image" content="https://jacobbudnitz.com/images/webclip.png?v=20260606">
+  <link rel="preload" as="image" href="images/mobile-bg-768.avif" media="(max-width: 768px)" imagesrcset="images/mobile-bg-768.avif 768w, images/mobile-bg-1024.avif 1024w" imagesizes="100vw">
+  <link rel="preload" as="image" href="images/2ballssmall-1920.avif" media="(min-width: 769px)" imagesrcset="images/2ballssmall-1280.avif 1280w, images/2ballssmall-1920.avif 1920w" imagesizes="100vw">
   <link href="css/style.css" rel="stylesheet">
   <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png?v=20260606" rel="apple-touch-icon">
   <script src="tracker.js" defer></script>
   <script src="cursor.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jacob Budnitz",
+    "url": "https://jacobbudnitz.com/",
+    "sameAs": [
+      "https://twitter.com/jacobbudnitz",
+      "https://instagram.com/jacobbudnitz"
+    ],
+    "knowsAbout": [
+      "clinical AI",
+      "biomedical devices",
+      "cold-chain systems",
+      "medical education software"
+    ]
+  }
+  </script>
 </head>
 <body class="index-body">
   <div class="index-container">
     <nav class="index-nav">
-      <div class="index-name">JACOB BUDNITZ</div>
+      <h1 class="index-name">JACOB BUDNITZ</h1>
+      <p class="index-summary">Medical student, inventor, and software builder working across clinical AI, biomedical devices, cold-chain systems, and creative tools.</p>
       <a href="biocooler.html" class="index-link">BIOCOOLER</a>
       <a href="https://syllabus.fly.dev/" class="index-link">SYLLABUS</a>
       <a href="https://atlanta-explorer.fly.dev" class="index-link">ATLANTA EXPLORER</a>
@@ -41,8 +66,11 @@
   </div>
   <div class="index-bg">
     <picture>
-      <source media="(max-width: 768px)" srcset="images/mobile-bg.png">
-      <img src="images/2ballssmall.jpg" alt="" loading="lazy">
+      <source type="image/avif" media="(max-width: 768px)" srcset="images/mobile-bg-768.avif 768w, images/mobile-bg-1024.avif 1024w" sizes="100vw">
+      <source media="(max-width: 768px)" srcset="images/mobile-bg-768.jpg 768w, images/mobile-bg-1024.jpg 1024w" sizes="100vw">
+      <source type="image/avif" srcset="images/2ballssmall-1280.avif 1280w, images/2ballssmall-1920.avif 1920w" sizes="100vw">
+      <source srcset="images/2ballssmall-1280.jpg 1280w, images/2ballssmall-1920.jpg 1920w, images/2ballssmall.jpg 7200w" sizes="100vw">
+      <img src="images/2ballssmall-1920.jpg" alt="" width="1920" height="1920" fetchpriority="high" decoding="async">
     </picture>
   </div>
 
@@ -84,6 +112,7 @@
       var btnNo   = document.getElementById('xp-btn-no');
       var btnX    = document.getElementById('xp-close-x');
       if (!overlay) return;
+      if (window.innerWidth <= 768 || (window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches)) return;
 
       var openTimer = null;
       var cookTimer = null;

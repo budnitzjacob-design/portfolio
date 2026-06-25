@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jacob Budnitz is a medical student, inventor, and software builder working on clinical AI, biomedical devices, cold-chain systems, and creative technical projects.">
   <link rel="canonical" href="https://jacobbudnitz.com/">
+  <link rel="me" href="https://twitter.com/jacobbudnitz">
+  <link rel="me" href="https://instagram.com/jacobbudnitz">
   <meta property="og:title" content="Jacob Budnitz">
   <meta property="og:description" content="Medical student, inventor, and software builder working on clinical AI, biomedical devices, and creative technical projects.">
   <meta property="og:type" content="website">
@@ -22,26 +24,99 @@
   <meta name="twitter:image" content="https://jacobbudnitz.com/images/webclip.png?v=20260606">
   <link rel="preload" as="image" href="images/mobile-bg-768.avif" media="(max-width: 768px)" imagesrcset="images/mobile-bg-768.avif 768w, images/mobile-bg-1024.avif 1024w" imagesizes="100vw">
   <link rel="preload" as="image" href="images/2ballssmall-1920.avif" media="(min-width: 769px)" imagesrcset="images/2ballssmall-1280.avif 1280w, images/2ballssmall-1920.avif 1920w" imagesizes="100vw">
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/home.css" rel="stylesheet">
   <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png?v=20260606" rel="apple-touch-icon">
-  <script src="tracker.js" defer></script>
   <script src="cursor.js" defer></script>
+  <script>
+    (function () {
+      function loadTracker() {
+        var script = document.createElement('script');
+        script.src = 'tracker.js';
+        script.defer = true;
+        document.head.appendChild(script);
+      }
+
+      function scheduleTracker() {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadTracker, { timeout: 2500 });
+        } else {
+          window.setTimeout(loadTracker, 1500);
+        }
+      }
+
+      if (document.readyState === 'complete') scheduleTracker();
+      else window.addEventListener('load', scheduleTracker, { once: true });
+    })();
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://jacobbudnitz.com/#person",
     "name": "Jacob Budnitz",
     "url": "https://jacobbudnitz.com/",
+    "mainEntityOfPage": "https://jacobbudnitz.com/",
+    "description": "Jacob Budnitz is a medical student, inventor, and software builder working on clinical AI, biomedical devices, cold-chain systems, and creative technical projects.",
+    "image": "https://jacobbudnitz.com/images/webclip.png?v=20260606",
     "sameAs": [
       "https://twitter.com/jacobbudnitz",
       "https://instagram.com/jacobbudnitz"
+    ],
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Stanford University",
+        "url": "https://www.stanford.edu/"
+      }
+    ],
+    "affiliation": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Emory University School of Medicine",
+        "url": "https://med.emory.edu/"
+      }
+    ],
+    "hasOccupation": [
+      {
+        "@type": "Occupation",
+        "name": "Medical student"
+      },
+      {
+        "@type": "Occupation",
+        "name": "Inventor"
+      },
+      {
+        "@type": "Occupation",
+        "name": "Software builder"
+      }
     ],
     "knowsAbout": [
       "clinical AI",
       "biomedical devices",
       "cold-chain systems",
-      "medical education software"
+      "medical education software",
+      "retrieval-augmented generation",
+      "palmar cooling",
+      "thermoregulation",
+      "medical device prototyping"
+    ],
+    "subjectOf": [
+      {
+        "@type": "WebPage",
+        "name": "Curriculum Vitae",
+        "url": "https://jacobbudnitz.com/research.html"
+      },
+      {
+        "@type": "WebPage",
+        "name": "Biography",
+        "url": "https://jacobbudnitz.com/biography.html"
+      },
+      {
+        "@type": "WebPage",
+        "name": "Patents",
+        "url": "https://jacobbudnitz.com/projects.html"
+      }
     ]
   }
   </script>

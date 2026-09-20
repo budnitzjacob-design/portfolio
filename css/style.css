@@ -500,6 +500,12 @@ a {
   padding-top: 2px;
   white-space: nowrap;
 }
+@media (min-width: 769px) {
+  .research-year {
+    text-align: right;
+    transform: translateX(-12px);
+  }
+}
 .research-year a {
   color: inherit;
   text-decoration: none;

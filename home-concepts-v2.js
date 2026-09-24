@@ -18,6 +18,7 @@
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/+*—';
   const radius = 14.7, radiusSquared = radius * radius;
   const lifetime = 1800, arrival = 60, departure = 180, flipPeriod = 720;
+  const yellowLifetime = arrival + (lifetime - arrival - departure) * .6 + departure;
   const rainbow = [[255,222,53], [255,134,28], [40,115,255], [42,208,92], [229,34,32]];
   const colors = Array.from({length:20}, (_, i) => {
     const p = i / 19 * 4, segment = Math.min(3, Math.floor(p)), t = p - segment;
@@ -136,20 +137,21 @@
     }
     for(const [cell,trail] of trails) {
       const elapsed=now-trail.started;
-      if(elapsed>=lifetime) { draw(cell,blankSprite); trails.delete(cell); continue; }
+      const duration=trail.mode===0?yellowLifetime:lifetime;
+      if(elapsed>=duration) { draw(cell,blankSprite); trails.delete(cell); continue; }
       const color=trail.mode===0?'#ffdf32':colors[Math.min(19,Math.floor(elapsed/(lifetime-departure)*20))];
       let face=sprite(' ',color), scale=1;
       if(!reduced && elapsed<arrival) { scale=.15+.85*elapsed/arrival; moving=true; }
-      else if(elapsed>=lifetime-departure) {
-        if(reduced) { deadline=Math.min(deadline,trail.started+lifetime); }
+      else if(elapsed>=duration-departure) {
+        if(reduced) { deadline=Math.min(deadline,trail.started+duration); }
         else {
-          const phase=(elapsed-(lifetime-departure))/departure;
+          const phase=(elapsed-(duration-departure))/departure;
           scale=Math.abs(1-2*phase); if(phase>=.5) face=blankSprite; moving=true;
         }
       } else if(trail.mode===1) {
         if(!reduced) { scale=Math.abs(Math.cos(Math.PI*elapsed/180)); moving=true; }
         else deadline=Math.min(deadline,trail.started+(Math.floor(elapsed/81)+1)*81);
-      } else deadline=Math.min(deadline,trail.started+lifetime-departure);
+      } else deadline=Math.min(deadline,trail.started+duration-departure);
       draw(cell,face,scale);
     }
     if(moving) frameId=requestAnimationFrame(render);

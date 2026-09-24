@@ -142,6 +142,7 @@
   }
   const trailDuration = 1800;
   const flipDuration = 180;
+  const enterDuration = 60;
   const shadeCount = 20;
   const trailModes = [
     {name: 'yellow', colors: [[255, 222, 53]]},
@@ -195,10 +196,10 @@
         next = Math.min(next, trail.started + (trail.black ? trailDuration : trailDuration - flipDuration / 2));
         continue;
       }
-      if (elapsed >= flipDuration && !trail.entered) {
+      if (elapsed >= enterDuration && !trail.entered) {
         trail.entered = true; cell.tile.classList.remove('trail-entering');
       }
-      next = Math.min(next, trail.started + (trail.entered ? trailDuration - flipDuration : flipDuration));
+      next = Math.min(next, trail.started + (trail.entered ? trailDuration - flipDuration : enterDuration));
       if (!trail.multicolor) continue;
       const phase = Math.min(shadeCount - 1, Math.floor(elapsed / ((trailDuration - flipDuration) / shadeCount)));
       if (phase !== trail.phase) {
@@ -266,7 +267,7 @@
     for (const sample of samples.length ? samples : [event]) {
       paintPointerSegment({x: sample.clientX + offsetX, y: sample.clientY + offsetY}, started, touched);
     }
-    if (touched.size) scheduleTrailTick(started + 16);
+    if (touched.size) scheduleTrailTick(started + enterDuration);
   }
   function endPointerPath() { lastPointer = null; hoveredCells.clear(); }
   $('#departures-board').addEventListener('click', event => {
@@ -275,7 +276,9 @@
     $('#departures-board').dataset.trailMode = trailModes[trailMode].name;
     endPointerPath(); processPointer(event);
   });
-  $('#departures-board').addEventListener('pointermove', processPointer, {passive: true});
+  // Raw updates arrive before frame-aligned pointermove in supporting browsers.
+  const pointerEvent = 'onpointerrawupdate' in window ? 'pointerrawupdate' : 'pointermove';
+  $('#departures-board').addEventListener(pointerEvent, processPointer, {passive: true});
   $('#departures-board').addEventListener('pointerleave', endPointerPath);
   $('#departures-board').addEventListener('pointercancel', endPointerPath);
   addEventListener('blur', endPointerPath);

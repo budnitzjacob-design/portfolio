@@ -4,6 +4,27 @@
   <meta charset="utf-8">
   <title>Jacob Budnitz — Clinical AI, Biomedical Invention, and Software</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Preserve the original homepage on phones and touch-only devices.
+    (function () {
+      if (!window.matchMedia('(min-width: 769px) and (hover: hover) and (pointer: fine)').matches) return;
+      var choice = new URLSearchParams(window.location.search).get('home');
+      function enableHomepageToggle() {
+        var name = document.querySelector('.index-name');
+        if (!name) return;
+        var toggle = document.createElement('a');
+        toggle.href = 'index.html?home=tiles';
+        toggle.textContent = name.textContent;
+        toggle.setAttribute('aria-label', 'Jacob Budnitz — switch to tile homepage');
+        name.replaceChildren(toggle);
+      }
+      document.addEventListener('DOMContentLoaded', enableHomepageToggle, { once: true });
+      if (choice === 'classic') return;
+      if (choice === 'tiles' || Math.random() < 0.5) {
+        window.location.replace('home-concepts-v2.html');
+      }
+    })();
+  </script>
   <meta name="description" content="Jacob Budnitz is a medical student, inventor, and software builder working on clinical AI, biomedical devices, cold-chain systems, and creative technical projects.">
   <link rel="canonical" href="https://jacobbudnitz.com/">
   <link rel="me" href="https://twitter.com/jacobbudnitz">

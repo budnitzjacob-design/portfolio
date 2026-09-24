@@ -25,7 +25,7 @@
   let grid, pointerFrame = null, lastPointer = null;
   let pointerSamples = [];
   const glyphMetrics = new Map();
-  let scheduledCells = [], activeCells = new Set(), scheduleIndex = 0;
+  const activeCells = new Set();
   const trails = new Map();
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/+*—';
   const typeMetrics = document.createElement('canvas').getContext('2d');
@@ -111,36 +111,31 @@
   }
   function replayBoard() {
     clearTrails();
-    boardTime = 0; lastFlip = -100; cancelAnimationFrame(animationFrame);
-    activeCells.clear(); scheduleIndex = 0;
-    // A rolling wave keeps only a small fraction of the board composited at once.
-    const waveDuration = Math.max(2500, cells.length * 2);
-    cells.forEach((cell, i) => {
-      cell.start = i / cells.length * waveDuration;
-      cell.end = cell.start + 320 + Math.random() * 120;
-      cell.settled = false; cell.tile.classList.remove('spinning');
-      cell.tile.classList.add('blank'); setChar(cell, ' ');
+    boardTime = 0; lastFlip = 0; cancelAnimationFrame(animationFrame);
+    activeCells.clear();
+    cells.forEach(cell => {
+      // Every card starts together. Titles settle only after the surrounding board.
+      cell.end = cell.protected ? 2800 + Math.random() * 200 : 2200 + Math.random() * 400;
+      cell.settled = false;
+      cell.tile.style.setProperty('--intro-phase', `${-Math.random() * 480}ms`);
+      cell.tile.classList.remove('blank');
+      cell.tile.classList.toggle('spinning', !reduced);
+      if (reduced) finishCell(cell);
+      else { setChar(cell, randChar()); activeCells.add(cell); }
     });
-    scheduledCells = cells;
-    if (reduced) cells.forEach(finishCell);
-    else { previous = 0; animationFrame = requestAnimationFrame(frame); }
+    if (!reduced) { previous = 0; animationFrame = requestAnimationFrame(frame); }
   }
   let lastFlip = 0;
   function tickBoard(delta) {
     boardTime += delta;
-    while (scheduleIndex < scheduledCells.length && scheduledCells[scheduleIndex].start <= boardTime) {
-      const cell = scheduledCells[scheduleIndex++];
-      if (boardTime >= cell.end) { finishCell(cell); continue; }
-      cell.tile.classList.remove('blank'); cell.tile.classList.add('spinning');
-      setChar(cell, randChar()); activeCells.add(cell);
-    }
-    const scramble = boardTime - lastFlip >= 100;
+    // Slower glyph changes keep the full-board animation inexpensive.
+    const scramble = boardTime - lastFlip >= 480;
     if (scramble) lastFlip = boardTime;
     for (const cell of activeCells) {
       if (boardTime >= cell.end) { finishCell(cell); activeCells.delete(cell); }
       else if (scramble) setChar(cell, randChar());
     }
-    return scheduleIndex < scheduledCells.length || activeCells.size > 0;
+    return activeCells.size > 0;
   }
   const trailDuration = 1800;
   const flipDuration = 180;
@@ -288,7 +283,7 @@
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       cancelAnimationFrame(animationFrame); clearTrails();
-    } else if (scheduleIndex < scheduledCells.length || activeCells.size) {
+    } else if (activeCells.size) {
       previous = 0; animationFrame = requestAnimationFrame(frame);
     }
   });

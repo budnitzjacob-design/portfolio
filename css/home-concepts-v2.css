@@ -86,7 +86,12 @@ body { background: #151515; color: #eee; font-family: "Times New Roman", Times, 
 }
 .top .glyph { top: 0; }
 .bottom .glyph { bottom: 0; }
-.tile.spinning .top { animation: flip .14s linear infinite; }
+/* A flat hinge transform avoids a separate 3D scene for every intro card. */
+@keyframes board-flip {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0); }
+}
+.tile.spinning .top { animation: board-flip .48s ease-in-out infinite; animation-delay: var(--intro-phase, 0ms); }
 .tile::after { top: calc(50% - .65px); height: 1.3px; background: #000; box-shadow: 0 1px #ffffff12; }
 @media (prefers-reduced-motion: reduce) { .tile.spinning .top { animation: none; } }
 
@@ -166,8 +171,8 @@ button.board-link { padding: 0; border: 0; background: transparent; cursor: poin
 
 /* Isolate repainting and allocate animation layers only while a card moves. */
 .socket { contain: layout paint style; }
-.tile.spinning, .tile.heat-trail:not(.single-trail), .tile.trail-entering, .tile.trail-exiting { perspective: 180px; }
-.tile.spinning .top, .tile.heat-trail:not(.single-trail) .top, .tile.trail-entering .top, .tile.trail-exiting .top { will-change: transform; }
+.tile.heat-trail:not(.single-trail), .tile.trail-entering, .tile.trail-exiting { perspective: 180px; }
+.tile.heat-trail:not(.single-trail) .top, .tile.trail-entering .top, .tile.trail-exiting .top { will-change: transform; }
 
 /* Single-color faces move only on arrival and departure. */
 .tile.heat-trail.single-trail .top { animation: none; }

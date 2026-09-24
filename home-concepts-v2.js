@@ -32,16 +32,15 @@
   const randChar = () => alphabet[Math.floor(Math.random() * alphabet.length)];
   function buildBoard() {
     const root = $('#tiles'), bounds = root.getBoundingClientRect();
-    const mobile = innerWidth <= 650;
-    cols = mobile ? 24 : Math.max(42, Math.min(84, Math.floor(bounds.width / 25)));
-    rows = mobile ? 32 : Math.max(28, Math.floor(bounds.height / 28));
+    cols = Math.max(42, Math.min(84, Math.floor(bounds.width / 25)));
+    rows = Math.max(28, Math.floor(bounds.height / 28));
     root.style.gridTemplateColumns = `repeat(${cols},1fr)`;
     root.style.gridTemplateRows = `repeat(${rows},1fr)`;
-    const gap = mobile ? 2 : 4, rowGap = mobile ? 4 : 5;
+    const gap = 4, rowGap = 5;
     const cw = (bounds.width - (cols - 1) * gap) / cols;
     const ch = (bounds.height - (rows - 1) * rowGap) / rows;
-    root.style.setProperty('--tile-font', `${Math.min((cw - (mobile ? 2 : 4)) * 1.12, (ch - (mobile ? 4 : 6)) * .95)}px`);
-    root.style.setProperty('--tile-height', `${ch - (mobile ? 4 : 6)}px`);
+    root.style.setProperty('--tile-font', `${Math.min((cw - 4) * 1.12, (ch - 6) * .95)}px`);
+    root.style.setProperty('--tile-height', `${ch - 6}px`);
     grid = {left: bounds.left + scrollX, top: bounds.top + scrollY, cw, ch, pitchX: cw + gap, pitchY: ch + rowGap};
     glyphMetrics.clear();
     typeMetrics.font = `${parseFloat(root.style.getPropertyValue('--tile-font'))}px \"Times New Roman\"`;
@@ -49,14 +48,14 @@
     root.replaceChildren(); $('#board-links').replaceChildren(); cells = [];
     const fragment = document.createDocumentFragment();
     for (let i = 0; i < rows * cols; i++) {
-      const socket = document.createElement('span'); socket.className = 'socket'; socket.dataset.index = i;
+      const socket = document.createElement('span'); socket.className = 'socket';
       const tile = document.createElement('span'); tile.className = 'tile';
       const top = document.createElement('span'), bottom = document.createElement('span');
       top.className = 'leaf top'; bottom.className = 'leaf bottom';
       const upperGlyph = document.createElement('span'), lowerGlyph = document.createElement('span');
       upperGlyph.className = lowerGlyph.className = 'glyph';
       top.append(upperGlyph); bottom.append(lowerGlyph); tile.append(top, bottom); socket.append(tile); fragment.append(socket);
-      cells.push({tile, upperGlyph, lowerGlyph, char: null, target:' ', start:0, end:0, settled:false,
+      cells.push({tile, upperGlyph, lowerGlyph, char: null, target:' ', end:0, settled:false,
         protected: false,
         x: bounds.left + scrollX + (i % cols) * (cw + gap) + cw / 2,
         y: bounds.top + scrollY + Math.floor(i / cols) * (ch + rowGap) + ch / 2});
@@ -84,8 +83,7 @@
       }
     }
     word('JACOB BUDNITZ', 3, Math.floor((cols - 13) / 2), true);
-    if (mobile) projects.forEach(([label, href], i) => word(label, 8 + i * 2, Math.floor((cols - label.length) / 2), false, href));
-    else projects.forEach(([label, href], i) => {
+    projects.forEach(([label, href], i) => {
       const column = i % 2, row = 9 + Math.floor(i / 2) * 3;
       const center = Math.floor(cols * (column ? .73 : .27));
       word(label, row, center - Math.floor(label.length / 2), false, href);
@@ -108,6 +106,11 @@
     cell.settled = true; setChar(cell, cell.target);
     cell.tile.classList.remove('spinning');
     cell.tile.classList.toggle('blank', cell.target === ' ');
+    // Empty cards no longer need either text layer once the intro finishes.
+    if (!cell.protected) {
+      cell.upperGlyph.remove(); cell.lowerGlyph.remove();
+      cell.upperGlyph = cell.lowerGlyph = null;
+    }
   }
   function replayBoard() {
     clearTrails();

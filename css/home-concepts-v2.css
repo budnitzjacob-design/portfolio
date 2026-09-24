@@ -3,82 +3,48 @@
 html, body { margin: 0; min-height: 100%; }
 body { background: #151515; color: #eee; font-family: "Times New Roman", Times, serif; }
 #departures-board {
-  position: relative;
-  height: 100svh;
-  min-height: 560px;
-  padding: 7px;
-  background:
-    radial-gradient(ellipse at 45% 0%, #ffffff08, transparent 75%),
-    repeating-linear-gradient(0deg, #ffffff02 0 1px, transparent 1px 3px),
-    #232323;
+  position: relative; height: 100svh; min-height: 560px; padding: 7px;
+  isolation: isolate; background: #1a1a1a; box-shadow: inset 0 1px #ffffff12;
 }
 #tiles { display: grid; width: 100%; height: 100%; gap: 5px 4px; }
-/* Each two-leaf flap sits inside its own recessed pocket in the board. */
 .socket {
-  position: relative;
-  min-width: 0;
-  min-height: 0;
-  padding: 3px 2px;
-  border-radius: 3px;
-  background: #0a0a0a;
-  box-shadow: inset 0 2px 3px #000, inset 1px 0 2px #000,
-    0 1px 0 #ffffff1c, 1px 0 0 #ffffff09;
+  position: relative; min-width: 0; min-height: 0; padding: 3px 2px;
+  border-radius: 4px; background: #060606; contain: layout paint style;
+  box-shadow: inset 0 2px 3px #000, 0 1px 0 #ffffff19;
 }
 .tile {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 1px;
-  background: linear-gradient(#070707 0%, #010101 49.5%, #080808 50%, #030303 100%);
-  box-shadow: 0 1px 1px #000, inset 0 1px #ffffff0c;
-  color: #a7a7a7;
-  font-family: "Times New Roman", Times, serif;
-  font-size: var(--tile-font);
-  font-weight: 400;
-  text-align: center;
-  line-height: var(--tile-height);
+  display: block; position: relative; width: 100%; height: 100%;
+  border-radius: 3px; background: #020202; color: #a7a7a7;
+  box-shadow: 0 2px 2px #000a, 0 0 0 1px #000;
+  font-size: var(--tile-font); font-weight: 400; text-align: center;
+  --gloss: linear-gradient(135deg, transparent 15%, #ffffff05 25%, #ffffff16 28%, #ffffff04 34%, transparent 43%);
 }
-.tile.lit, .tile.name { color: #f2f0eb; }
+.tile.lit, .tile.name { color: #f7f7f3; }
 .tile.blank { color: transparent; }
-/* The split and two exposed ends of the horizontal hinge axle. */
+.tile.selected { color: #fff; text-shadow: 0 0 5px #ffffff65; }
 .tile::after {
-  content: ''; position: absolute; z-index: 2;
-  left: 0; right: 0; top: 50%; height: 1px;
-  background: #000; box-shadow: 0 1px #ffffff07;
+  content: ''; position: absolute; z-index: 2; left: 0; right: 0;
+  top: calc(50% - .65px); height: 1.3px;
+  background: #000; box-shadow: 0 1px #ffffff12;
 }
 .socket::after {
   content: ''; position: absolute; z-index: 3; pointer-events: none;
-  left: 0; right: 0; top: calc(50% - 1px); height: 3px;
-  background: linear-gradient(to right, #555 0 2px, #111 2px 3px,
-    transparent 3px calc(100% - 3px), #111 calc(100% - 3px) calc(100% - 2px), #555 calc(100% - 2px));
-  border-radius: 1px;
+  left: 0; right: 0; top: calc(50% - 1px); height: 3px; border-radius: 1px;
+  background: linear-gradient(#777, #171717 45%, #050505) left center / 3px 3px no-repeat,
+    linear-gradient(#777, #171717 45%, #050505) right center / 3px 3px no-repeat;
 }
-.tile.selected { color: #fff; text-shadow: 0 0 5px #ffffff65; }
-@keyframes flip { from { transform: rotateX(0); } to { transform: rotateX(-180deg); } }
-#board-links { position: absolute; inset: 7px; pointer-events: none; }
-.board-link {
-  position: absolute; display: block; color: transparent;
-  text-decoration: none; pointer-events: auto; border-radius: 2px;
-}
-.board-link:focus-visible { outline: 1px solid #eee; outline-offset: 2px; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-@media (max-width: 650px) {
-  #departures-board { padding: 4px; min-height: 650px; }
-  #board-links { inset: 4px; }
-  #tiles { gap: 4px 2px; }
-  .socket { padding: 2px 1px; }
-  .socket::after { height: 2px; }
-}
-
-/* Matched printed halves: each clips the same, optically centered glyph. */
 .leaf { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; }
 .leaf.top {
-  top: 0; background: linear-gradient(155deg, #101010, #020202);
-  border-radius: 1px 1px 0 0; transform-origin: center bottom; backface-visibility: hidden;
-  box-shadow: inset 0 1px #ffffff13;
+  top: 0; border-radius: 3px 3px 1px 1px;
+  transform-origin: center bottom; backface-visibility: hidden;
+  background: var(--gloss), linear-gradient(#383838, #141414 12%, #050505 45%, #020202);
+  box-shadow: inset 0 1px #ffffff60, inset 1px 0 #ffffff0e, inset -1px 0 #ffffff0e;
 }
-.leaf.bottom { bottom: 0; background: linear-gradient(#020202, #090909); border-radius: 0 0 1px 1px; }
+.leaf.bottom {
+  bottom: 0; border-radius: 1px 1px 3px 3px;
+  background: var(--gloss), linear-gradient(#020202, #080808 70%, #1e1e1e 94%, #070707);
+  box-shadow: inset 0 -1px #ffffff35, inset 1px 0 #ffffff0c, inset -1px 0 #ffffff0c;
+}
 .glyph {
   position: absolute; left: 0; right: 0; height: var(--tile-height);
   display: flex; align-items: center; justify-content: center;
@@ -86,106 +52,25 @@ body { background: #151515; color: #eee; font-family: "Times New Roman", Times, 
 }
 .top .glyph { top: 0; }
 .bottom .glyph { bottom: 0; }
-/* A flat hinge transform avoids a separate 3D scene for every intro card. */
-@keyframes board-flip {
-  0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(0); }
-}
+#board-links { position: absolute; inset: 7px; pointer-events: none; }
+.board-link { position: absolute; display: block; color: transparent; text-decoration: none; pointer-events: auto; border-radius: 2px; }
+.board-link:focus-visible { outline: 1px solid #eee; outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@keyframes board-flip { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0); } }
+@keyframes flip { from { transform: rotateX(0); } to { transform: rotateX(-180deg); } }
+@keyframes reveal-face { from { transform: rotateX(-180deg); } to { transform: rotateX(0); } }
+@keyframes return-face { 0%, 100% { transform: rotateX(0); } 50% { transform: rotateX(-90deg); } }
 .tile.spinning .top { animation: board-flip .48s ease-in-out infinite; animation-delay: var(--intro-phase, 0ms); }
-.tile::after { top: calc(50% - .65px); height: 1.3px; background: #000; box-shadow: 0 1px #ffffff12; }
-@media (prefers-reduced-motion: reduce) { .tile.spinning .top { animation: none; } }
-
-/* Each touched card keeps its own 20-shade, 1.8-second heat trail. */
-.tile.heat-trail { background: var(--trail-color); }
-.tile.heat-trail .top {
-  background: linear-gradient(155deg, #ffffff25, #0000000c), var(--trail-color);
-  animation: flip .09s linear infinite;
-}
-.tile.heat-trail .bottom { background: linear-gradient(#00000024, #ffffff0c), var(--trail-color); }
-.tile.heat-trail::after { background: #261b0b; box-shadow: 0 1px #ffffff30; }
-@media (prefers-reduced-motion: reduce) { .tile.heat-trail .top { animation: none; } }
-
-button.board-link { padding: 0; border: 0; background: transparent; cursor: pointer; font: inherit; }
-
-/* Uniform studio reflections on molded glossy plastic; no spotlight overlay. */
-#departures-board {
-  isolation: isolate;
-  background: #1a1a1a;
-  box-shadow: inset 0 1px #ffffff12;
-}
-.socket {
-  border-radius: 4px;
-  background: #060606;
-  box-shadow: inset 0 2px 3px #000, 0 1px 0 #ffffff19;
-}
-.tile {
-  border-radius: 3px;
-  background: #020202;
-  box-shadow: 0 2px 2px #000a, 0 0 0 1px #000;
-}
-.leaf.top {
-  border-radius: 3px 3px 1px 1px;
-  background: linear-gradient(180deg, #383838 0%, #141414 12%, #050505 45%, #020202 100%);
-  box-shadow: inset 0 1px #ffffff60, inset 1px 0 #ffffff0e, inset -1px 0 #ffffff0e;
-}
-.leaf.bottom {
-  border-radius: 1px 1px 3px 3px;
-  background: linear-gradient(180deg, #020202, #080808 70%, #1e1e1e 94%, #070707);
-  box-shadow: inset 0 -1px #ffffff35, inset 1px 0 #ffffff0c, inset -1px 0 #ffffff0c;
-}
-.leaf::after {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(135deg, transparent 15%, #ffffff05 25%, #ffffff16 28%, #ffffff04 34%, transparent 43%);
-}
-.socket::after {
-  background:
-    linear-gradient(#777, #171717 45%, #050505) left center / 3px 3px no-repeat,
-    linear-gradient(#777, #171717 45%, #050505) right center / 3px 3px no-repeat;
-}
-.tile.lit, .tile.name { color: #f7f7f3; }
-.tile.heat-trail .top {
-  background: linear-gradient(180deg, #ffffff88, #ffffff16 15%, #0000000c 70%, #00000022), var(--trail-color);
-}
-.tile.heat-trail .bottom {
-  background: linear-gradient(180deg, #00000025, transparent 65%, #ffffff44 94%, #00000012), var(--trail-color);
-}
-
-/* Both palettes print a circle across the two black card halves. */
-.tile.heat-trail.circle-trail { background: #020202; }
-.tile.heat-trail.circle-trail .top {
-  background: linear-gradient(180deg, #383838 0%, #141414 12%, #050505 45%, #020202 100%);
-  box-shadow: inset 0 1px #ffffff60, inset 1px 0 #ffffff0e, inset -1px 0 #ffffff0e;
-}
-.tile.heat-trail.circle-trail .bottom {
-  background: linear-gradient(180deg, #020202, #080808 70%, #1e1e1e 94%, #070707);
-  box-shadow: inset 0 -1px #ffffff35, inset 1px 0 #ffffff0c, inset -1px 0 #ffffff0c;
-}
+.tile.heat-trail .top { animation: flip .09s linear infinite; }
 .tile.heat-trail.circle-trail .leaf::before {
   content: ''; position: absolute; left: 0; right: 0; height: var(--tile-height);
-  background: radial-gradient(circle closest-side at center, var(--trail-color, #ffdf32) 0% 80%, transparent 84%);
+  background: radial-gradient(circle closest-side, var(--trail-color, #ffdf32) 0% 80%, transparent 84%);
 }
 .tile.heat-trail.circle-trail .top::before { top: 0; }
 .tile.heat-trail.circle-trail .bottom::before { bottom: 0; }
-.tile.heat-trail.circle-trail .leaf::after { background: none; }
-.tile.heat-trail.circle-trail::after { background: #000; box-shadow: 0 1px #ffffff12; }
-
-/* Isolate repainting and allocate animation layers only while a card moves. */
-.socket { contain: layout paint style; }
-.tile.heat-trail:not(.single-trail), .tile.trail-entering, .tile.trail-exiting { perspective: 180px; }
-.tile.heat-trail:not(.single-trail) .top, .tile.trail-entering .top, .tile.trail-exiting .top { will-change: transform; }
-
-/* Single-color faces move only on arrival and departure. */
 .tile.heat-trail.single-trail .top { animation: none; }
 .tile.heat-trail.single-trail.trail-entering .top { animation: reveal-face .18s ease-out both; }
 .tile.single-trail.trail-exiting .top, .tile.trail-exiting .top { animation: return-face .18s ease-in-out both; }
-@keyframes reveal-face {
-  from { transform: rotateX(-180deg); }
-  to { transform: rotateX(0); }
-}
-@keyframes return-face {
-  0%, 100% { transform: rotateX(0); }
-  50% { transform: rotateX(-90deg); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .tile.heat-trail.single-trail.trail-entering .top, .tile.single-trail.trail-exiting .top, .tile.trail-exiting .top { animation: none; }
-}
+.tile.heat-trail:not(.single-trail), .tile.trail-entering, .tile.trail-exiting { perspective: 180px; }
+.tile.heat-trail:not(.single-trail) .top, .tile.trail-entering .top, .tile.trail-exiting .top { will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .tile .leaf.top { animation: none !important; } }

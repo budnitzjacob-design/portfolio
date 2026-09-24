@@ -22,8 +22,8 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let cells = [], boardTime = 0, cols, rows, animationFrame, trailFrame = null;
   let hoveredCells = new Set();
-  let grid, pointerFrame = null, lastPointer = null;
-  let pointerSamples = [];
+  let grid, lastPointer = null;
+  let nextTrailTick = Infinity;
   const glyphMetrics = new Map();
   const activeCells = new Set();
   const trails = new Map();
@@ -158,12 +158,10 @@
   function paintTrail(cell, modeIndex, phase) {
     const mode = trailModes[modeIndex];
     cell.tile.style.setProperty('--trail-color', mode.shades[phase]);
-    cell.tile.style.setProperty('--reflection-position', `${phase / (shadeCount - 1) * 100}%`);
 
   }
   function clearTrails() {
-    cancelAnimationFrame(trailFrame); trailFrame = null;
-    cancelAnimationFrame(pointerFrame); pointerFrame = null; pointerSamples = []; lastPointer = null;
+    clearTimeout(trailFrame); trailFrame = null; nextTrailTick = Infinity; lastPointer = null;
     for (const cell of trails.keys()) resetTrail(cell);
     trails.clear(); hoveredCells.clear();
   }
@@ -171,7 +169,10 @@
     cell.tile.classList.remove('heat-trail', 'circle-trail', 'single-trail', 'trail-entering', 'trail-exiting');
     cell.tile.style.removeProperty('--trail-color');
   }
-  function animateTrails(now) {
+  function animateTrails() {
+    trailFrame = null; nextTrailTick = Infinity;
+    const now = performance.now();
+    let next = Infinity;
     for (const [cell, trail] of trails) {
       const elapsed = now - trail.started;
       if (elapsed >= trailDuration) {
@@ -188,87 +189,90 @@
           trail.black = true;
           cell.tile.classList.remove('heat-trail', 'circle-trail');
         }
+        next = Math.min(next, trail.started + (trail.black ? trailDuration : trailDuration - flipDuration / 2));
         continue;
       }
       if (elapsed >= flipDuration && !trail.entered) {
         trail.entered = true; cell.tile.classList.remove('trail-entering');
       }
+      next = Math.min(next, trail.started + (trail.entered ? trailDuration - flipDuration : flipDuration));
       if (!trail.multicolor) continue;
       const phase = Math.min(shadeCount - 1, Math.floor(elapsed / ((trailDuration - flipDuration) / shadeCount)));
       if (phase !== trail.phase) {
         paintTrail(cell, trail.mode, phase); trail.phase = phase;
       }
+      next = Math.min(next, trail.started + (phase + 1) * ((trailDuration - flipDuration) / shadeCount));
     }
-    trailFrame = trails.size ? requestAnimationFrame(animateTrails) : null;
+    if (trails.size) scheduleTrailTick(Math.max(now + 8, next));
   }
-  function flipNearPointer(event) {
-    if (event.pointerType === 'touch') return;
-    const radius = 14.7;
+  function scheduleTrailTick(deadline) {
+    if (deadline >= nextTrailTick) return;
+    clearTimeout(trailFrame);
+    nextTrailTick = deadline;
+    trailFrame = setTimeout(animateTrails, Math.max(0, deadline - performance.now()));
+  }
+  function activateTrail(cell, started) {
+    const multicolor = trailModes[trailMode].name === 'rainbow';
+    trails.set(cell, {started, phase: 0, mode: trailMode, multicolor});
+    cell.tile.classList.remove('trail-exiting');
+    cell.tile.classList.toggle('single-trail', !multicolor);
+    cell.tile.classList.toggle('trail-entering', !multicolor);
+    cell.tile.classList.add('heat-trail', 'circle-trail');
+    paintTrail(cell, trailMode, 0);
+  }
+  function paintPointerSegment(point, started, touched) {
+    const radius = 14.7, radiusSquared = radius * radius;
+    const from = lastPointer || point;
+    const dx = point.x - from.x, dy = point.y - from.y;
+    const lengthSquared = dx * dx + dy * dy;
     const nextHovered = new Set();
-    const started = performance.now();
-    // Direct grid lookup visits only the handful of cells near the cursor.
-    const x = event.clientX + scrollX, y = event.clientY + scrollY;
-    const minCol = Math.max(0, Math.floor((x - radius - grid.left) / grid.pitchX));
-    const maxCol = Math.min(cols - 1, Math.floor((x + radius - grid.left) / grid.pitchX));
-    const minRow = Math.max(0, Math.floor((y - radius - grid.top) / grid.pitchY));
-    const maxRow = Math.min(rows - 1, Math.floor((y + radius - grid.top) / grid.pitchY));
-    for (let row = minRow; row <= maxRow; row++) for (let col = minCol; col <= maxCol; col++) {
-      const cell = cells[row * cols + col];
-      if (cell.protected || !cell.settled) continue;
-      if (Math.hypot(cell.x - (event.clientX + scrollX), cell.y - (event.clientY + scrollY)) > radius) continue;
-      nextHovered.add(cell);
-      if (hoveredCells.has(cell)) continue;
-      setChar(cell, ' ');
-      const multicolor = trailModes[trailMode].name === 'rainbow';
-      trails.set(cell, {started, phase: 0, mode: trailMode, multicolor});
-      cell.tile.classList.remove('trail-exiting');
-      cell.tile.classList.toggle('single-trail', !multicolor);
-      cell.tile.classList.toggle('trail-entering', !multicolor);
-      cell.tile.classList.add('heat-trail');
-      cell.tile.classList.add('circle-trail');
-      paintTrail(cell, trailMode, 0);
-    }
-    hoveredCells = nextHovered;
-    if (trails.size && !trailFrame) trailFrame = requestAnimationFrame(animateTrails);
-  }
-  function flushPointerPath() {
-    cancelAnimationFrame(pointerFrame); pointerFrame = null;
-    const samples = pointerSamples;
-    pointerSamples = [];
-    // Keep every sampled bend and fill fast gaps at less than half a tile pitch.
-    const spacing = Math.min(10, grid.pitchX / 2, grid.pitchY / 2);
-    for (const point of samples) {
-      if (!lastPointer) flipNearPointer(point);
-      else {
-        const dx = point.clientX - lastPointer.clientX;
-        const dy = point.clientY - lastPointer.clientY;
-        const steps = Math.max(1, Math.ceil(Math.hypot(dx, dy) / spacing));
-        for (let step = 1; step <= steps; step++) {
-          flipNearPointer({clientX: lastPointer.clientX + dx * step / steps,
-            clientY: lastPointer.clientY + dy * step / steps});
-        }
+    const minRow = Math.max(0, Math.floor((Math.min(from.y, point.y) - radius - grid.top) / grid.pitchY));
+    const maxRow = Math.min(rows - 1, Math.floor((Math.max(from.y, point.y) + radius - grid.top) / grid.pitchY));
+    // Visit each crossed tile once, using exact distance to the swept cursor path.
+    for (let row = minRow; row <= maxRow; row++) {
+      const centerY = grid.top + row * grid.pitchY + grid.ch / 2;
+      let t0 = 0, t1 = 1;
+      if (dy) {
+        const a = (centerY - radius - from.y) / dy, b = (centerY + radius - from.y) / dy;
+        t0 = Math.max(0, Math.min(a, b)); t1 = Math.min(1, Math.max(a, b));
+        if (t0 > t1) continue;
+      } else if (Math.abs(centerY - from.y) > radius) continue;
+      const x0 = from.x + dx * t0, x1 = from.x + dx * t1;
+      const minCol = Math.max(0, Math.floor((Math.min(x0, x1) - radius - grid.left) / grid.pitchX));
+      const maxCol = Math.min(cols - 1, Math.floor((Math.max(x0, x1) + radius - grid.left) / grid.pitchX));
+      for (let col = minCol; col <= maxCol; col++) {
+        const cell = cells[row * cols + col];
+        if (cell.protected || !cell.settled) continue;
+        const t = lengthSquared ? Math.max(0, Math.min(1, ((cell.x - from.x) * dx + (cell.y - from.y) * dy) / lengthSquared)) : 0;
+        const ex = cell.x - from.x - t * dx, ey = cell.y - from.y - t * dy;
+        if (ex * ex + ey * ey > radiusSquared) continue;
+        const endX = cell.x - point.x, endY = cell.y - point.y;
+        if (endX * endX + endY * endY <= radiusSquared) nextHovered.add(cell);
+        if (hoveredCells.has(cell) || touched.has(cell)) continue;
+        touched.add(cell); activateTrail(cell, started);
       }
-      lastPointer = point;
     }
+    hoveredCells = nextHovered; lastPointer = point;
   }
-  function endPointerPath() {
-    flushPointerPath(); lastPointer = null; hoveredCells.clear();
+  function processPointer(event) {
+    if (event.pointerType === 'touch') return;
+    const samples = event.getCoalescedEvents?.() || [];
+    const started = performance.now(), touched = new Set();
+    const offsetX = scrollX, offsetY = scrollY;
+    // Apply immediately, without queueing an additional animation frame.
+    for (const sample of samples.length ? samples : [event]) {
+      paintPointerSegment({x: sample.clientX + offsetX, y: sample.clientY + offsetY}, started, touched);
+    }
+    if (touched.size) scheduleTrailTick(started + 16);
   }
+  function endPointerPath() { lastPointer = null; hoveredCells.clear(); }
   $('#departures-board').addEventListener('click', event => {
     if (event.target.closest('a, button')) return;
-    flushPointerPath();
     trailMode = (trailMode + 1) % trailModes.length;
     $('#departures-board').dataset.trailMode = trailModes[trailMode].name;
-    hoveredCells.clear();
-    flipNearPointer(event);
+    endPointerPath(); processPointer(event);
   });
-  $('#departures-board').addEventListener('pointermove', event => {
-    if (event.pointerType === 'touch') return;
-    const coalesced = event.getCoalescedEvents?.() || [];
-    const samples = coalesced.length ? coalesced : [event];
-    for (const sample of samples) pointerSamples.push({clientX: sample.clientX, clientY: sample.clientY});
-    if (!pointerFrame) pointerFrame = requestAnimationFrame(flushPointerPath);
-  }, {passive: true});
+  $('#departures-board').addEventListener('pointermove', processPointer, {passive: true});
   $('#departures-board').addEventListener('pointerleave', endPointerPath);
   $('#departures-board').addEventListener('pointercancel', endPointerPath);
   addEventListener('blur', endPointerPath);

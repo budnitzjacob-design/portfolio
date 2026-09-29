@@ -6,7 +6,7 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const projects = [
     ['BIOCOOLER', 'biocooler.html'], ['SYLLABUS', 'https://syllabus.fly.dev/'],
-    ['ATLANTA EXPLORER', 'https://atlanta-explorer.fly.dev'], ['PEPTOCOPIA', 'https://peptocopeia.com'],
+    ['PEPTOCOPIA', 'https://peptocopeia.com'],
     ['ORGANISM LOGGER', 'https://organism-logger.fly.dev'], ['THERMOROID', 'thermoroid.html'],
     ['ARTWORKS', 'artworks.html'], ['RELAY', 'https://relaycallbell.com'],
     ['CURRICULUM VITAE', 'research.html'], ['PATENTS', 'projects.html'], ['BIOGRAPHY', 'biography.html']

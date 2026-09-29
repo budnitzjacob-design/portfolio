@@ -3,7 +3,6 @@
   const projects = [
     ['BIOCOOLER', 'biocooler.html', 'BIOMEDICAL'],
     ['SYLLABUS', 'https://syllabus.fly.dev/', 'SOFTWARE'],
-    ['ATLANTA EXPLORER', 'https://atlanta-explorer.fly.dev', 'EXPLORATION'],
     ['PEPTOCOPIA', 'https://peptocopeia.com', 'MEDICINE'],
     ['ORGANISM LOGGER', 'https://organism-logger.fly.dev', 'FIELD NOTES'],
     ['THERMOROID', 'thermoroid.html', 'INVENTION'],
